@@ -1,14 +1,38 @@
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import adapter from '@sveltejs/adapter-static';
+
+
+// cloudflare 
 // import adapter from '@sveltejs/adapter-cloudflare';
+
+// static
+// import adapter from '@sveltejs/adapter-static';
+
+// auto
+import adapter from '@sveltejs/adapter-auto';
+
+import { mdsvex } from 'mdsvex';
+import mdsvexConfig from './mdsvex.config.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter({
-			fallback: 'index.html' // may differ from host to host
-		}),
+	extensions: [
+		'.svelte', 
+		...mdsvexConfig.extensions
+	],
 
+	preprocess: [
+		mdsvex(mdsvexConfig),
+		vitePreprocess(),
+	],
+
+
+	kit: {
+		// --------------------------------------------------- static
+		// adapter: adapter({
+		// 	fallback: 'index.html'
+		// }),
+
+		// --------------------------------------------------- cloudflare 
 		// adapter: adapter({
 		// 	// See below for an explanation of these options
 		// 	routes: {
@@ -22,11 +46,27 @@ const config = {
 		// 		persist: false
 		// 	}
 		// }),
+
+		// --------------------------------------------------- auto
+		adapter: adapter(),
+
+
+
+
 		alias: {
 			"@/*": "./src/lib/*",
 		},
+
+		prerender: {
+			entries: [
+				'*',
+				'/api/pages/page/*',
+				'/api/posts/page/*',
+			]
+		},
+		csp: { mode: 'auto' }
+
 	},
-	preprocess: vitePreprocess()
 
 };
 

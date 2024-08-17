@@ -5,7 +5,6 @@
     import { Input } from "$lib/components/ui/input/index.js";
     import { Label } from "$lib/components/ui/label/index.js";
 
-    export let value = "";
     export let open = false;
 
     let forms = [

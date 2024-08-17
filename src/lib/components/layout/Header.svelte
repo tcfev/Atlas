@@ -5,16 +5,9 @@
     import { page } from "$app/stores";
     import * as Sheet from "$lib/components/ui/sheet";
     import Menu from "lucide-svelte/icons/menu";
+    import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
 
-    let haederLinks = [
-        { name: "صفحه اصلی", link: "/" },
-        { name: "گروه‌ها", link: "/groups" },
-        { name: "احزاب", link: "/parties" },
-        { name: "گراف", link: "/graph" },
-        { name: "همکاری", link: "/collaborate" },
-        { name: "درباره ما", link: "/about" },
-        { name: "تماس با ما", link: "/contact" },
-    ];
+    export let haederLinks = defaultHeaderLinks;
 
     let isSticky = false;
     let scrollY;
@@ -40,9 +33,11 @@
             class="container flex-grow flex flex-col mr-auto justify-center items-center gap-4"
         >
             <Globe class="w-[200px] h-[200px] text-indigo-300 " />
-            <h1 class="font-extralight text-4xl">
-                اطلس جامعه مدنی ایران
-            </h1>
+            <a href="/">
+                <h1 class="font-extralight text-4xl">
+                    {siteTitle}
+                </h1>
+            </a>
         </div>
 
         <div class="bg-gray-700 border-b container rounded-t-md">
@@ -87,10 +82,12 @@
             <div class="inline-flex items-center flex-row gap-4">
                 <Globe class="w-4 h-4 text-indigo-300 " />
                 <h1 class="font-extralight text-md">
-                    اطلس جامعه مدنی ایران
+                    <a href="/">
+                        {siteTitle}
+                    </a>
                 </h1>
             </div>
-            
+
             <Sheet.Root>
                 <Sheet.Trigger>
                     <Button variant="ghost" class="inline-flex lg:hidden ">
@@ -99,12 +96,11 @@
                 </Sheet.Trigger>
                 <Sheet.Content side="left">
                     <Sheet.Header>
-                        <div class="inline-flex  flex-col text-right justify-start gap-4 mt-8">
+                        <div
+                            class="inline-flex flex-col text-right justify-start gap-4 mt-8"
+                        >
                             {#each haederLinks as { name, link }, idx (idx)}
-                                <a
-                                    href={link}
-                                    class="text-md"
-                                >
+                                <a href={link} class="text-md">
                                     {name}
                                 </a>
                             {/each}
@@ -112,7 +108,7 @@
                     </Sheet.Header>
                 </Sheet.Content>
             </Sheet.Root>
-            <div class="hidden lg:inline-flex  flex-row justify-start gap-5">
+            <div class="hidden lg:inline-flex flex-row justify-start gap-5">
                 {#each haederLinks as { name, link }, idx (idx)}
                     <a
                         href={link}
@@ -133,9 +129,9 @@
         @apply bg-gray-50 mb-4 border-b flex flex-col;
         height: calc(100vh + 3px);
     }
-    .sticky {
+    /* .sticky {
         position: sticky;
-    }
+    } */
 
     .sticky-header {
         display: flex;

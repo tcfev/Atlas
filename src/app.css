@@ -1,7 +1,11 @@
+@import "./lib/styles/fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
  
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -74,6 +78,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
     direction: rtl;
   }
 }

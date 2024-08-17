@@ -11,6 +11,8 @@
     import ListAllGroups from "@/sections/ListAllGroups.svelte";
     import Pencil from "lucide-svelte/icons/pencil";
     import { createEventDispatcher } from "svelte";
+    import XIcon from "@/icons/XIcon.svelte";
+    import InstagramIcon from "@/icons/InstagramIcon.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -23,6 +25,9 @@
     export let manifesto;
     export let internetAddress;
     export let constitution;
+    export let x;
+    export let instagram;
+    export let editable = false;
 
     function truncateString(str, length) {
         if (!str) return "";
@@ -106,13 +111,15 @@
     </Card.Content>
     <Card.Footer>
         <div class="content-container links-container">
-            <Button
-                variant="outline"
-                class="text-blue-700"
-                on:click={handleEditClick}
-            >
-                <Pencil class="h-4 w-4" />
-            </Button>
+            {#if editable}
+                <Button
+                    variant="outline"
+                    class="text-blue-700"
+                    on:click={handleEditClick}
+                >
+                    <Pencil class="h-4 w-4" />
+                </Button>
+            {/if}
 
             {#if internetAddress}
                 <Button
@@ -120,8 +127,23 @@
                     href={internetAddress}
                     target="_blank"
                 >
-                    <Link class="ml-2 h-4 w-4" />
-                    وبسایت
+                    <Link class="h-4 w-4" />
+                </Button>
+            {/if}
+
+            {#if x}
+                <Button variant="outline" href={x} target="_blank">
+                    <div class="h-4 w-4">
+                        <XIcon />
+                    </div>
+                </Button>
+            {/if}
+
+            {#if instagram}
+                <Button variant="outline" href={instagram} target="_blank">
+                    <div class="h-4 w-4">
+                        <InstagramIcon />
+                    </div>
                 </Button>
             {/if}
 
@@ -183,6 +205,5 @@
     }
     .links-container {
         @apply w-full flex flex-row gap-2 flex-wrap;
-        
     }
 </style>
