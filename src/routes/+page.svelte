@@ -15,65 +15,11 @@
 
     let data = [];
 
-    let stats = [
-        { title: "تعداد کل گروه‌های فعال", value: 0 },
-        { title: "اخرین بروزرسانی", value: "۱۴۰۳/۰۸/۱۰" },
-    ];
-    function edit(e) {
-        console.log(e);
-    }
-
-    onMount(() => {
-        fetch("/data/data-2024-08-10.json")
-            .then((response) => response.json())
-            .then((json) => {
-                data = json;
-                stats[0].value = data.length;
-            });
-    });
+    onMount(() => {});
 </script>
 
 <svelte:head>
-    <title>
-        اطلس جامعه مدنی ایران - صفحه‌ی اصلی
-    </title>
+    <title>اطلس جامعه مدنی ایران - صفحه‌ی اصلی</title>
 </svelte:head>
 
-<Header />
-
-<div class="container mx-auto">
-    <div class="my-32">
-        <h1 class="text-4xl font-bold text-indigo-400 mb-4">گروه‌ها</h1>
-        <p class="text-justify text-gray-600">
-            در این بخش می‌توانید اطلاعات مربوط به گروه‌های فعال در ایران را
-            مشاهده کنید. گروه‌های فعال در این اطلس بر اساس اطلاعات موجود در
-            منابع معتبر و مستندات عمومی جمع‌آوری شده‌اند. جمع‌آوری اطلاعات این
-            اطلس از سال ۱۴۰۳ آغاز شده و تاکنون ادامه دارد. اگر اطلاعاتی در این
-            اطلس ناقص یا نادرست است، خواهشمندیم از طریق صفحه‌ی تماس با ما به ما
-            اطلاع دهید. شما هم می‌توانید به این اطلس کمک کنید برای اطلاعات بیشتر
-            به بخش «همکاری» مراجعه کنید.
-        </p>
-    </div>
-
-    <div class="flex flex-row my-16 gap-4">
-        {#each stats as { title, value }}
-            <Card.Root class="w-[250px]">
-                <Card.Header
-                    class="flex flex-row items-center justify-between space-y-0 pb-2"
-                >
-                    <Card.Title class="text-sm font-medium">
-                        {title}
-                    </Card.Title>
-                </Card.Header>
-                <Card.Content>
-                    <div class="text-2xl font-bold">
-                        {value}
-                    </div>
-                    <p class="text-muted-foreground text-xs"></p>
-                </Card.Content>
-            </Card.Root>
-        {/each}
-    </div>
-
-    <ListAllGroups {data} on:edit={edit} />
-</div>
+<div class="container mx-auto"></div>

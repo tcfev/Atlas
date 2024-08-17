@@ -25,7 +25,7 @@
 {:else}
     <Header />
 
-    <div class="w-full mx-auto max-w-[800px] prose lg:prose-xl relative mt-24">
+    <div class="w-full mx-auto max-w-[800px] prose lg:prose-xl relative mb-24">
         <svelte:component this={PostContent} dir="auto" />
     </div>
 

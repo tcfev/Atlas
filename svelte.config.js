@@ -5,10 +5,10 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 // import adapter from '@sveltejs/adapter-cloudflare';
 
 // static
-// import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static';
 
-// auto
-import adapter from '@sveltejs/adapter-auto';
+// // auto
+// import adapter from '@sveltejs/adapter-auto';
 
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
@@ -28,9 +28,9 @@ const config = {
 
 	kit: {
 		// --------------------------------------------------- static
-		// adapter: adapter({
-		// 	fallback: 'index.html'
-		// }),
+		adapter: adapter({
+			fallback: 'index.html'
+		}),
 
 		// --------------------------------------------------- cloudflare 
 		// adapter: adapter({
@@ -47,8 +47,8 @@ const config = {
 		// 	}
 		// }),
 
-		// --------------------------------------------------- auto
-		adapter: adapter(),
+		// // --------------------------------------------------- auto
+		// adapter: adapter(),
 
 
 

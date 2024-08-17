@@ -8,6 +8,6 @@
 
 <slot name="header" />
 
-<div class="container mx-auto mt-[49px]" dir="auto">
+<div class="container mx-auto" dir="auto">
     <slot />
 </div>

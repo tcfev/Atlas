@@ -11,7 +11,7 @@
 
 <Header />
 
-<div class="mt-16">
+<div class="mb-16">
     {#each posts as post}
         <div>
             <h2>{post.title}</h2>

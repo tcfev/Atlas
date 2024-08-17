@@ -47,10 +47,9 @@
 
 <EditModal bind:open={editOpen} />
 
-<Header />
 
 <div class="container mx-auto">
-    <div class="my-32">
+    <div class="mb-32">
         <h1 class="text-4xl font-bold text-indigo-400 mb-4">گروه‌ها</h1>
         <p class="text-justify text-gray-600">
             در این بخش می‌توانید اطلاعات مربوط به گروه‌های فعال در ایران را

@@ -8,11 +8,10 @@
     import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
 
     export let haederLinks = defaultHeaderLinks;
-
+    export let style = 2;
+    
     let isSticky = false;
     let scrollY;
-
-    let style = 2;
 
     $: {
         if (scrollY > 657) {
