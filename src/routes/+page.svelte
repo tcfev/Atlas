@@ -22,4 +22,7 @@
     <title>اطلس جامعه مدنی ایران - صفحه‌ی اصلی</title>
 </svelte:head>
 
-<div class="container mx-auto"></div>
+<div class="container mx-auto">
+اطلس جامعه مدنی ایران
+
+</div>
