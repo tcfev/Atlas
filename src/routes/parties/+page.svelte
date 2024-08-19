@@ -38,7 +38,7 @@
 </svelte:head>
 
 
-<div class="container mx-auto">
+<div class="container mx-auto pt-8">
     <div class="mb-32">
         <h1 class="text-4xl font-bold text-indigo-400 mb-4">
             احزاب

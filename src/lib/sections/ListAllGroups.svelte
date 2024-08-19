@@ -1,13 +1,17 @@
 <script>
     import GroupCardItem from "./GroupCardItem.svelte";
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
     import Button from "@/components/ui/button/button.svelte";
     import GroupTable from "./GroupTable.svelte";
     import Input from "$lib/components/ui/input/input.svelte";
+    import Ellipsis from "lucide-svelte/icons/ellipsis";
+    import * as Menubar from "$lib/components/ui/menubar";
 
     const dispatch = createEventDispatcher();
 
     export let data = [];
+    export let editable = true;
+
     let _data = [];
     let filters = [
         { title: "همه", value: "all" },
@@ -64,16 +68,39 @@
         }
     }
 
+    function downloadJson() {
+        const dataStr =
+            "data:text/json;charset=utf-8," +
+            encodeURIComponent(JSON.stringify(data));
+        const downloadAnchorNode = document.createElement("a");
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "data.json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
     $: dataSourceChanged(data);
     $: applyFilters(data, selectedFilter, searchText);
+
+    onMount(() => {
+        // all fields
+        const fields = data.map((item) => {
+            return Object.keys(item);
+        });
+        // remove duplicates
+        const uniqueFields = [...new Set(fields.flat())];
+    });
 </script>
 
-<div class="w-full flex flex-row flex-wrap justify-between items-center my-4 gap-4">
+<div
+    class="w-full flex flex-row flex-wrap justify-between items-center my-4 gap-4"
+>
     <div class="min-w-[300px] max-w-full">
         <Input bind:value={searchText} placeholder="جستجو" />
     </div>
 
-    <div class="flex flex-row gap-2 flex-wrap sm:justify-start justify-between">
+    <div class="flex flex-row gap-2 flex-wrap sm:justify-start justify-between items-center">
         {#each filters as { title, value } (value)}
             <Button
                 class="text-sm {selectedFilter.includes(value)
@@ -86,6 +113,21 @@
                 {title}
             </Button>
         {/each}
+
+        {#if editable}
+            <Menubar.Root>
+                <Menubar.Menu>
+                    <Menubar.Trigger >
+                        <Ellipsis class="h-4 w-4" />
+                    </Menubar.Trigger>
+                    <Menubar.Content>
+                        <Menubar.Item on:click={downloadJson}>
+                            دانلود json
+                        </Menubar.Item>
+                    </Menubar.Content>
+                </Menubar.Menu>
+            </Menubar.Root>
+        {/if}
     </div>
 </div>
 
@@ -96,7 +138,7 @@
 {:else}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each _data as item, idx (idx)}
-            <GroupCardItem {...item} on:edit={edit} />
+            <GroupCardItem {...item} on:edit={edit} {editable} />
         {/each}
     </div>
 {/if}
@@ -104,5 +146,4 @@
 <!-- <GroupTable {data}/> -->
 
 <style>
-   
 </style>

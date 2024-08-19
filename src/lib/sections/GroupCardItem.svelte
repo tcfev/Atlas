@@ -27,7 +27,7 @@
     export let constitution;
     export let x;
     export let instagram;
-    export let editable = false;
+    export let editable = true;
 
     function truncateString(str, length) {
         if (!str) return "";
@@ -140,7 +140,7 @@
             {/if}
 
             {#if instagram}
-                <Button variant="outline" href={instagram} target="_blank">
+                <Button variant="outline" href="https://instagram.com/{instagram}/" target="_blank">
                     <div class="h-4 w-4">
                         <InstagramIcon />
                     </div>

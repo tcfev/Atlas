@@ -1,5 +1,4 @@
 <script>
-    import BlogPageLayout from "@/components/layout/BlogPageLayout.svelte";
 </script>
 
 # asda
@@ -7,3 +6,5 @@
 s
 sdads
 ## something
+
+

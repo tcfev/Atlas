@@ -16,6 +16,8 @@
 
     let data = [];
     let editOpen = false;
+    let editData;
+    let suggestable = false;
 
     let stats = [
         { title: "تعداد کل گروه‌های فعال", value: 0 },
@@ -24,9 +26,15 @@
 
     function edit(e) {
         editOpen = false;
+        editData = data.find((item) => item.id === e.detail.id);
         setTimeout(() => {
             editOpen = true;
         }, 100);
+    }
+
+    function modalClose() {
+        editOpen = false;
+        data = [...data];
     }
 
     onMount(() => {
@@ -40,15 +48,17 @@
 </script>
 
 <svelte:head>
-    <title>
-        اطلس جامعه مدنی ایران - گروه‌ها
-    </title>
+    <title>اطلس جامعه مدنی ایران - گروه‌ها</title>
 </svelte:head>
 
-<EditModal bind:open={editOpen} />
+<EditModal
+    bind:open={editOpen}
+    bind:data={editData}
+    on:close={modalClose}
+    {suggestable}
+/>
 
-
-<div class="container mx-auto">
+<div class="container mx-auto pt-8">
     <div class="mb-32">
         <h1 class="text-4xl font-bold text-indigo-400 mb-4">گروه‌ها</h1>
         <p class="text-justify text-gray-600">
