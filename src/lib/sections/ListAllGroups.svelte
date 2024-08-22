@@ -15,10 +15,10 @@
     let _data = [];
     let filters = [
         { title: "همه", value: "all" },
-        { title: "دارای اینستاگرام", value: "instagram" },
-        { title: "دارای تلگرام", value: "telegram" },
-        { title: "دارای x", value: "x" },
-        { title: "دارای وبسایت", value: "internetAddress" },
+        { title: "دارای اینستاگرام", value: "social_instagram" },
+        { title: "دارای تلگرام", value: "social_telegram" },
+        { title: "دارای x", value: "social_x" },
+        { title: "دارای وبسایت", value: "internet_address" },
         { title: "دارای مرامنامه", value: "manifesto" },
         { title: "دارای چارت سازمانی", value: "constitution" },
     ];
@@ -40,7 +40,12 @@
     }
 
     function addFilter(filter) {
-        if (filter === "all") return (selectedFilter = ["all"]);
+        if (filter === "all") {
+            if (selectedFilter.includes("all")) {
+                selectedFilter = [];
+            }
+            return (selectedFilter = ["all"]);
+        }
         if (selectedFilter.includes(filter)) {
             selectedFilter = selectedFilter.filter((v) => v !== filter);
         } else {
@@ -100,7 +105,9 @@
         <Input bind:value={searchText} placeholder="جستجو" />
     </div>
 
-    <div class="flex flex-row gap-2 flex-wrap sm:justify-start justify-between items-center">
+    <div
+        class="flex flex-row gap-2 flex-wrap sm:justify-start justify-between items-center"
+    >
         {#each filters as { title, value } (value)}
             <Button
                 class="text-sm {selectedFilter.includes(value)
@@ -117,7 +124,7 @@
         {#if editable}
             <Menubar.Root>
                 <Menubar.Menu>
-                    <Menubar.Trigger >
+                    <Menubar.Trigger>
                         <Ellipsis class="h-4 w-4" />
                     </Menubar.Trigger>
                     <Menubar.Content>

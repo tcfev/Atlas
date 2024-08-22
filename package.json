@@ -28,6 +28,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/ssr": "^0.5.0",
+		"@supabase/supabase-js": "^2.45.1",
 		"@types/webgl2": "^0.0.11",
 		"bits-ui": "^0.21.13",
 		"clsx": "^2.1.1",

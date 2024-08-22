@@ -13,6 +13,7 @@
     import Header from "@/components/layout/Header.svelte";
     import Hash from "lucide-svelte/icons/hash";
     import EditModal from "@/components/EditModal.svelte";
+    import { authStore } from "$lib/stores/authStore";
 
     let data = [];
     let editOpen = false;
@@ -52,8 +53,8 @@
 </svelte:head>
 
 <EditModal
+    id={editData?.id}
     bind:open={editOpen}
-    bind:data={editData}
     on:close={modalClose}
     {suggestable}
 />
@@ -92,5 +93,5 @@
         {/each}
     </div>
 
-    <ListAllGroups {data} on:edit={edit} />
+    <ListAllGroups {data} on:edit={edit} editable={!!$authStore.user} />
 </div>

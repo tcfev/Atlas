@@ -6,6 +6,7 @@
     import * as Sheet from "$lib/components/ui/sheet";
     import Menu from "lucide-svelte/icons/menu";
     import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
+    import Logo from "$lib/icons/Logo.svelte";
 
     export let haederLinks = defaultHeaderLinks;
     export let style = 2;
@@ -33,7 +34,7 @@
         >
             <Globe class="w-[200px] h-[200px] text-indigo-300 " />
             <a href="/">
-                <h1 class="font-extralight text-4xl">
+                <h1 class="font-extralight text-4xl text-gray-600">
                     {siteTitle}
                 </h1>
             </a>
@@ -79,7 +80,9 @@
     <div class="bg-gray-700 border-b w-full sticky-header h-[50px] t-0">
         <div class="container mx-auto flex flex-row justify-between">
             <div class="inline-flex items-center flex-row gap-4">
-                <Globe class="w-4 h-4 text-indigo-300 " />
+                <div class="w-4 h-4">
+                    <Logo />
+                </div>
                 <h1 class="font-extralight text-md">
                     <a href="/">
                         {siteTitle}

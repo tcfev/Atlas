@@ -7,14 +7,32 @@
     import { createEventDispatcher } from "svelte";
     import Textarea from "./ui/textarea/textarea.svelte";
     import CountrySelect from "$lib/components/ui/CountrySelect.svelte";
+    import { getEntity, updateEntity, uploadLogo } from "$lib/api";
 
     const dispatch = createEventDispatcher();
 
     export let open = false;
+    export let id = 0;
     export let data = {};
     export let suggestable = false;
 
+    let updateState = "INIT";
+    let _org_data = {};
+
     let forms = [
+        {
+
+            name: "لوگو",
+            value: "logo",
+            fields: [
+                {
+                    id: "logo",
+                    displayName: "لوگو",
+                    value: "",
+                    type: "image_upload",
+                },
+            ],
+        },
         {
             name: "اطلاعات کلی",
             value: "info",
@@ -28,26 +46,20 @@
                     disabled: true,
                 },
                 {
-                    id: "logo",
-                    displayName: "لوگو",
-                    value: "",
-                    type: "text",
-                },
-                {
                     id: "name",
                     displayName: "نام سازمان",
                     value: "",
                     type: "text",
                 },
                 {
-                    id: "persianName",
+                    id: "name_fa",
                     displayName: "نام فارسی",
                     value: "",
                     type: "text",
                 },
                 {
-                    id: "fullName",
-                    displayName: "نام کامل",
+                    id: "name_en",
+                    displayName: "نام فارسی",
                     value: "",
                     type: "text",
                 },
@@ -64,21 +76,26 @@
             value: "contact",
             fields: [
                 {
-                    id: "internetAddress",
+                    id: "internet_address",
                     displayName: "پایگاه اینترنتی",
                     value: "",
                     type: "url",
                 },
                 { id: "contact", displayName: "تماس", value: "", type: "text" },
-                { id: "x", displayName: "شبکه‌ی x", value: "", type: "text" },
                 {
-                    id: "instagram",
+                    id: "social_x",
+                    displayName: "شبکه‌ی x",
+                    value: "",
+                    type: "text",
+                },
+                {
+                    id: "social_instagram",
                     displayName: "اینستاگرام",
                     value: "",
                     type: "text",
                 },
                 {
-                    id: "telegram",
+                    id: "social_x",
                     displayName: "تلگرام",
                     value: "",
                     type: "text",
@@ -96,7 +113,7 @@
                     type: "text",
                 },
                 {
-                    id: "estimationOfMembers",
+                    id: "estimation_of_members",
                     displayName: "تخمین تعداد اعضا",
                     value: "",
                     type: "number",
@@ -116,7 +133,7 @@
                 },
                 { id: "plan", displayName: "برنامه", value: "", type: "text" },
                 {
-                    id: "politicalOrientation",
+                    id: "estimation_of_members",
                     displayName: "گرایش سیاسی",
                     value: "",
                     type: "text",
@@ -149,6 +166,11 @@
         },
     ];
 
+    async function getData(id) {
+        const entity = await getEntity(id);
+        return entity;
+    }
+
     function fillData(data) {
         forms.forEach((form) => {
             form.fields.forEach((field) => {
@@ -167,18 +189,61 @@
         dispatch("close");
     }
 
+    function updateData() {
+        // update the data fields with the value of the form fields
+        forms.forEach((form) => {
+            form.fields.forEach((field) => {
+                data[field.id] = field.value;
+            });
+        });
+
+        // send the data to the server
+        updateState = "LOADING";
+
+        // take diff between data and _org_data
+        const updated_fields = {};
+        for (const key in data) {
+            if (data[key] !== _org_data[key]) {
+                updated_fields[key] = data[key];
+            }
+        }
+
+        updateEntity(id, updated_fields)
+            .then((response) => {
+                updateState = "SUCCESS";
+                dispatch("close");
+            })
+            .catch((error) => {
+                updateState = "ERROR";
+            });
+    }
+
+    function handleUpload(id) {
+        return async (event) => {
+            const file = event.target.files[0];
+            await uploadLogo(id + ".png",file);
+            
+        };
+    }
+
     $: {
         if (open) {
-            fillData(data);
+            getData(id).then((entity) => {
+                _org_data = entity;
+                fillData(entity);
+            });
         }
     }
+
 </script>
 
 <div class="dialog-container max-h-full">
     <Dialog.Root {open} {onOpenChange}>
         <Dialog.Content>
             <Dialog.Header>
-                <Dialog.Title>ویرایش گروه</Dialog.Title>
+                <Dialog.Title>
+                    ویرایش گروه
+                </Dialog.Title>
                 <Dialog.Description>
                     تغییرات خود را اعمال کنید و در نهایت برای ذخیره کردن دکمه‌ی
                     ذخیره را بزنید.
@@ -227,6 +292,16 @@
                                                     bind:value={field.value}
                                                 />
                                             </div>
+                                        {:else if field.type === "image_upload"}
+                                            <Label for="picture">
+                                                {field.displayName}
+                                            </Label>
+                                            <Input
+                                                on:change={handleUpload(
+                                                    field.id,
+                                                )}
+                                                type="file"
+                                            />
                                         {:else}
                                             <Label
                                                 for={field.id}
@@ -251,10 +326,26 @@
             </Tabs.Root>
 
             <Dialog.Footer>
-                {#if suggestable}
-                    <Button type="submit">
-                        مرحله بعد
+                {#if !suggestable}
+                    <Button
+                        type="submit"
+                        on:click={updateData}
+                        disabled={updateState === "LOADING"}
+                    >
+                        {#if updateState === "LOADING"}
+                            در حال بارگذاری...
+                        {:else if updateState === "SUCCESS"}
+                            ذخیره شد
+                        {:else if updateState === "ERROR"}
+                            خطا
+                        {:else}
+                            ذخیره
+                        {/if}
                     </Button>
+                {/if}
+
+                {#if suggestable}
+                    <Button type="submit">مرحله بعد</Button>
                 {/if}
             </Dialog.Footer>
         </Dialog.Content>
@@ -270,5 +361,6 @@
         max-height: calc(100vh - 200px);
         overflow-y: auto;
         padding: 0 6px;
+        max-width: 600px;
     }
 </style>

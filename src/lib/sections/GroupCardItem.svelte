@@ -23,10 +23,10 @@
     export let location;
     export let about;
     export let manifesto;
-    export let internetAddress;
+    export let internet_address;
     export let constitution;
-    export let x;
-    export let instagram;
+    export let social_x;
+    export let social_instagram;
     export let editable = true;
 
     function truncateString(str, length) {
@@ -121,30 +121,42 @@
                 </Button>
             {/if}
 
-            {#if internetAddress}
+            {#if internet_address}
                 <Button
                     variant="outline"
-                    href={internetAddress}
+                    href={internet_address}
                     target="_blank"
                 >
                     <Link class="h-4 w-4" />
                 </Button>
             {/if}
 
-            {#if x}
-                <Button variant="outline" href={x} target="_blank">
-                    <div class="h-4 w-4">
-                        <XIcon />
-                    </div>
-                </Button>
+            {#if social_x}
+                {#each social_x as _x}
+                    <Button
+                        variant="outline"
+                        href="https://x.com/{_x}"
+                        target="_blank"
+                    >
+                        <div class="h-4 w-4">
+                            <XIcon />
+                        </div>
+                    </Button>
+                {/each}
             {/if}
 
-            {#if instagram}
-                <Button variant="outline" href="https://instagram.com/{instagram}/" target="_blank">
-                    <div class="h-4 w-4">
-                        <InstagramIcon />
-                    </div>
-                </Button>
+            {#if social_instagram}
+                {#each social_instagram as insta}
+                    <Button
+                        variant="outline"
+                        href="https://instagram.com/{insta}/"
+                        target="_blank"
+                    >
+                        <div class="h-4 w-4">
+                            <InstagramIcon />
+                        </div>
+                    </Button>
+                {/each}
             {/if}
 
             {#if manifesto}

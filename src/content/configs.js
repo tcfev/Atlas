@@ -11,3 +11,10 @@ export const defaultHeaderLinks = [
     { name: "درباره ما", link: "/p/about-us" },
     { name: "تماس با ما", link: "/p/contact-us" },
 ];
+
+export const socialLinks = [
+    { 
+        type: "github",
+        link: "https://github.com/tcfev/Atlas"
+    }
+];
