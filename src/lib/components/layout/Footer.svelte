@@ -58,7 +58,7 @@
 
     <div class="mt-4 text-sm text-gray-300">
         &copy; {new Date().getFullYear()}
-        {siteTitle}. All Rights Reserved.
+        {siteTitle}.Some Rights Reserved!
     </div>
     <div class="">
         <AuthButton />
