@@ -4,6 +4,7 @@
     import Globe from "lucide-svelte/icons/globe";
     import { page } from "$app/stores";
     import * as Sheet from "$lib/components/ui/sheet";
+    import { SheetClose } from "$lib/components/ui/sheet";
     import Menu from "lucide-svelte/icons/menu";
     import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
     import Logo from "$lib/icons/Logo.svelte";
@@ -102,9 +103,11 @@
                             class="inline-flex flex-col text-right justify-start gap-4 mt-8"
                         >
                             {#each haederLinks as { name, link }, idx (idx)}
-                                <a href={link} class="text-md">
-                                    {name}
-                                </a>
+                                <SheetClose>
+                                    <a href={link} class="text-md">
+                                        {name}
+                                    </a>
+                                </SheetClose>    
                             {/each}
                         </div>
                     </Sheet.Header>
