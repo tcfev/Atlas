@@ -55,13 +55,8 @@
             {/if}
         {/each}
     </div>
-
     <div class="mt-4 text-sm text-gray-300">
-        &copy; {new Date().getFullYear()}
-        {siteTitle}.Some Rights Reserved!
-    </div>
-    <div class="">
-        <AuthButton />
+        Atlas is licensed under Creative Commons
     </div>
 </footer>
 

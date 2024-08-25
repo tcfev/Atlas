@@ -8,6 +8,7 @@
     import Menu from "lucide-svelte/icons/menu";
     import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
     import Logo from "$lib/icons/Logo.svelte";
+    import AuthButton from "$lib/components/AuthButton.svelte";
 
     export let haederLinks = defaultHeaderLinks;
     export let style = 2;
@@ -54,6 +55,9 @@
                     </a>
                 {/each}
             </div>
+            <div class="">
+                <AuthButton />
+            </div>
         </div>
     </header>
     <div
@@ -75,6 +79,9 @@
                     {name}
                 </a>
             {/each}
+        </div>
+        <div class="">
+            <AuthButton />
         </div>
     </div>
 {:else if style == 2}
@@ -110,6 +117,10 @@
                                 </SheetClose>    
                             {/each}
                         </div>
+                        
+                        <div class=" flex-col text-center justify-center gap-4 mt-8">
+                            <AuthButton />
+                        </div>
                     </Sheet.Header>
                 </Sheet.Content>
             </Sheet.Root>
@@ -124,6 +135,10 @@
                         {name}
                     </a>
                 {/each}
+                <div class="" style="padding-bottom: 50px;">
+                    <AuthButton />
+                </div>
+            
             </div>
         </div>
     </div>
