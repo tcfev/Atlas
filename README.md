@@ -1,4 +1,5 @@
 # About Atlas
+
 The Woman, Life, Freedom Movement has been characterized by a fervent desire for unity among the Iranian diaspora. While this cohesion is essential to amplify the voices of Iranian activists, the movement currently comprises numerous, independent and siloed initiatives.
 
 The Atlas project aims to bridge these gaps and create a unified front by:
@@ -23,42 +24,16 @@ Designing and conducting surveys to gather feedback from movement participants a
 
 By systematically addressing these areas, the Atlas project seeks to foster a collaborative environment essential for the advancement of the Woman, Life, Freedom Movement.
 
-# Installation
-## create-svelte
+## How to contribute
+1. fork the project
+2. create a branch and do the changes
+3. create a pull request and wait for review :) thanks
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## Run 
+1. clone the project
+2. `npm install` 
+3. `npm run dev`
 
-## Creating a project
+## Build
+1. `npm run build`
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
