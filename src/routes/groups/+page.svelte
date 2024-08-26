@@ -14,16 +14,22 @@
     import Hash from "lucide-svelte/icons/hash";
     import EditModal from "@/components/EditModal.svelte";
     import { authStore } from "$lib/stores/authStore";
+    import { getEntities, fixNamesInDB } from "$lib/api";
 
     let data = [];
     let editOpen = false;
     let editData;
     let suggestable = false;
 
+    let _fetchDataState = "IDLE";
+    let _initFist = false;
+
     let stats = [
         { title: "تعداد کل گروه‌های فعال", value: 0 },
         { title: "اخرین بروزرسانی", value: "۱۴۰۳/۰۸/۱۰" },
     ];
+
+    let menuActions = [];
 
     function edit(e) {
         editOpen = false;
@@ -37,15 +43,85 @@
         editOpen = false;
         data = [...data];
     }
+    function fetchData(isAuth = false) {
+        _fetchDataState = "LOADING";
+
+        if (isAuth) {
+            getEntities()
+                .then((res) => {
+                    data = res;
+                    stats[0].value = data.length;
+                    _fetchDataState = "SUCCESS";
+                })
+                .catch((e) => {
+                    _fetchDataState = "ERROR";
+                    setTimeout(() => {
+                        fetchData(isAuth);
+                    }, 5000);
+                });
+        }
+
+        if (!isAuth) {
+            fetch("/data/data-2024-08-10.json")
+                .then((response) => response.json())
+                .then((json) => {
+                    data = json;
+                    stats[0].value = data.length;
+                    _fetchDataState = "SUCCESS";
+                })
+                .catch((e) => {
+                    _fetchDataState = "ERROR";
+                    setTimeout(() => {
+                        fetchData(isAuth);
+                    }, 5000);
+                });
+            return;
+        }
+    }
+
+    function updateMenuActions(isAuth = false) {
+        const _menuActions = [
+            {
+                title: "دانلود json",
+                action: () => {
+                    const element = document.createElement("a");
+                    const file = new Blob([JSON.stringify(data)], {
+                        type: "text/plain",
+                    });
+                    element.href = URL.createObjectURL(file);
+                    element.download = `data-${new Date().toISOString().split("T")[0]}.json`;
+                    document.body.appendChild(element); // Required for this to work in FireFox
+                    element.click();
+                },
+            },
+        ];
+
+        const _authMenuActions = [
+            {
+                title: "درست کردن اسم‌ها",
+                action: () => {
+                    fixNamesInDB().then(() => {
+                        fetchData(true);
+                    });
+                },
+            },
+        ];
+
+        if (isAuth) {
+            _menuActions.push(..._authMenuActions);
+        }
+
+        menuActions = _menuActions;
+    }
 
     onMount(() => {
-        fetch("/data/data-2024-08-10.json")
-            .then((response) => response.json())
-            .then((json) => {
-                data = json;
-                stats[0].value = data.length;
-            });
+        _fetchDataState = "IDLE";
+        fetchData($authStore.isAuthenticated);
+        _initFist = true;
     });
+
+    $: _initFist && fetchData($authStore.isAuthenticated);
+    $: updateMenuActions($authStore.isAuthenticated);
 </script>
 
 <svelte:head>
@@ -93,5 +169,10 @@
         {/each}
     </div>
 
-    <ListAllGroups {data} on:edit={edit} editable={!!$authStore.user} />
+    <ListAllGroups
+        {menuActions}
+        {data}
+        on:edit={edit}
+        editable={!!$authStore.user}
+    />
 </div>

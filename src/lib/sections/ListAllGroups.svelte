@@ -11,6 +11,7 @@
 
     export let data = [];
     export let editable = true;
+    export let menuActions = [];
 
     let _data = [];
     let filters = [
@@ -128,9 +129,11 @@
                         <Ellipsis class="h-4 w-4" />
                     </Menubar.Trigger>
                     <Menubar.Content>
-                        <Menubar.Item on:click={downloadJson}>
-                            دانلود json
-                        </Menubar.Item>
+                        {#each menuActions as { title, action } (title)}
+                            <Menubar.Item on:click={action}>
+                                {title}
+                            </Menubar.Item>
+                        {/each}
                     </Menubar.Content>
                 </Menubar.Menu>
             </Menubar.Root>

@@ -21,19 +21,6 @@
 
     let forms = [
         {
-
-            name: "لوگو",
-            value: "logo",
-            fields: [
-                {
-                    id: "logo",
-                    displayName: "لوگو",
-                    value: "",
-                    type: "image_upload",
-                },
-            ],
-        },
-        {
             name: "اطلاعات کلی",
             value: "info",
             selected: true,
@@ -42,7 +29,7 @@
                     id: "id",
                     displayName: "شناسه",
                     value: "",
-                    type: "text",
+                    type: "id",
                     disabled: true,
                 },
                 {
@@ -59,7 +46,7 @@
                 },
                 {
                     id: "name_en",
-                    displayName: "نام فارسی",
+                    displayName: "نام اینگلیسی",
                     value: "",
                     type: "text",
                 },
@@ -68,6 +55,18 @@
                     displayName: "پایگاه فعالیت",
                     value: "",
                     type: "countrySelect",
+                },
+            ],
+        },
+        {
+            name: "لوگو",
+            value: "logo",
+            fields: [
+                {
+                    id: "logo",
+                    displayName: "لوگو",
+                    value: "",
+                    type: "image_upload",
                 },
             ],
         },
@@ -221,8 +220,7 @@
     function handleUpload(id) {
         return async (event) => {
             const file = event.target.files[0];
-            await uploadLogo(id + ".png",file);
-            
+            await uploadLogo(id + ".png", file);
         };
     }
 
@@ -234,16 +232,13 @@
             });
         }
     }
-
 </script>
 
 <div class="dialog-container max-h-full">
     <Dialog.Root {open} {onOpenChange}>
         <Dialog.Content>
             <Dialog.Header>
-                <Dialog.Title>
-                    ویرایش گروه
-                </Dialog.Title>
+                <Dialog.Title>ویرایش گروه</Dialog.Title>
                 <Dialog.Description>
                     تغییرات خود را اعمال کنید و در نهایت برای ذخیره کردن دکمه‌ی
                     ذخیره را بزنید.
@@ -300,8 +295,22 @@
                                                 on:change={handleUpload(
                                                     field.id,
                                                 )}
+                                                class="col-span-3"
                                                 type="file"
                                             />
+                                        {:else if field.type === "id"}
+                                            <Label
+                                                for={field.id}
+                                                class="text-right"
+                                            >
+                                                {field.displayName}
+                                            </Label>
+                                            <div class="col-span-3 flex flex-row items-center justify-start">
+                                                
+                                                <span class="text-left w-full">
+                                                    #{field.value}
+                                                </span>
+                                            </div>
                                         {:else}
                                             <Label
                                                 for={field.id}
