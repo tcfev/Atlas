@@ -13,12 +13,14 @@
     import Header from "@/components/layout/Header.svelte";
     import Hash from "lucide-svelte/icons/hash";
     import EditModal from "@/components/EditModal.svelte";
+    import CreateNewModal from "@/components/CreateNewModal.svelte"; // Import CreateNewModal
     import { authStore } from "$lib/stores/authStore";
     import { getEntities, fixNamesInDB } from "$lib/api";
 
     let data = [];
     let editOpen = false;
     let editData;
+    let createOpen = false;
     let suggestable = false;
 
     let _fetchDataState = "IDLE";
@@ -41,8 +43,10 @@
 
     function modalClose() {
         editOpen = false;
+        createOpen = false;
         data = [...data];
     }
+
     function fetchData(isAuth = false) {
         _fetchDataState = "LOADING";
 
@@ -135,6 +139,8 @@
     {suggestable}
 />
 
+<CreateNewModal bind:open={createOpen} on:close={modalClose} {suggestable} />
+
 <div class="container mx-auto pt-8">
     <div class="mb-32">
         <h1 class="text-4xl font-bold text-indigo-400 mb-4">گروه‌ها</h1>
@@ -150,6 +156,19 @@
     </div>
 
     <div class="flex flex-row my-16 gap-4">
+        {#if $authStore.isAuthenticated}
+            <button
+                class="w-[250px] h-[110px]"
+                on:click={() => (createOpen = true)}
+            >
+                <Card.Root
+                    class=" h-full flex flex-col items-center justify-center cursor-pointer"
+                >
+                    <div class="text-4xl text-indigo-400">+</div>
+                    <span> افزودن گروه جدید </span>
+                </Card.Root>
+            </button>
+        {/if}
         {#each stats as { title, value }}
             <Card.Root class="w-[250px]">
                 <Card.Header

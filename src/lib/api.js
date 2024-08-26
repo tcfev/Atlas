@@ -62,3 +62,12 @@ export async function fixNamesInDB() {
   });
 
 }
+
+
+export async function createEntity(data) {
+  const res = await supabase.from('Entities').insert(data);
+  if (res.error) {
+    throw new Error(res.error.message);
+  }
+  return res.data;
+}
