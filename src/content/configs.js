@@ -14,8 +14,12 @@ export const defaultHeaderLinks = [
 ];
 
 export const socialLinks = [
-    { 
+    {
         type: "github",
         link: "https://github.com/tcfev/Atlas"
+    },
+    {
+        type: "x",
+        link: "https://x.com/Atlasworker"
     }
 ];

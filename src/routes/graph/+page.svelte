@@ -14,7 +14,7 @@
     let draggedNode: string | null = null;
 
     let selectTimeout: any = null;
-    let isSideOpen = true;
+    let isSideOpen = false;
 
     const state = {
         nodeHighlighted: false,
