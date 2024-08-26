@@ -22,12 +22,13 @@
 
         // turn node array data to subgraph
         const graph = new Graph();
+        console.log(_subgraph)
         _subgraph.map((node) => {
             graph.addNode(node["@id"], {
                 label: node["label"],
                 attributes: node,
-                x: 2,
-                y: 3,
+                x: Math.random() * 1000,
+                y: Math.random() * 1000,
                 size: 20,
             });
         });
@@ -81,11 +82,11 @@
 
             // Apply ForceAtlas2 layout
             ForceAtlas2.assign(graph, {
-                iterations: 20,
+                iterations: 200,
                 settings: {
                     ...sensibleSettings,
-                    scalingRatio: 2,
-                    strongGravityMode: true,
+                    scalingRatio: 270,
+                    strongGravityMode: false,
                 },
             });
             // Optionally, refresh the renderer to see the new positions immediately
