@@ -1,6 +1,6 @@
 <script>
     import BlogHeader from "@/components/layout/BlogHeader.svelte";
-    import BlogPageLayout from "@/components/layout/BlogPageLayout.svelte";
+    import OrgPageLayout from "@/components/layout/OrgPageLayout.svelte";
     import Contact from "lucide-svelte/icons/contact";
     import Header from "@/components/layout/Header.svelte";
     import Footer from "@/components/layout/Footer.svelte";
@@ -15,13 +15,13 @@
         <Contact class="w-full h-full" slot="page-logo" />
     </BlogHeader>
 
-    <BlogPageLayout>
+    <OrgPageLayout>
         <article
             class="w-full mx-auto max-w-[800px] prose lg:prose-xl relative"
         >
             <svelte:component this={PostContent} dir="auto" />
         </article>
-    </BlogPageLayout>
+    </OrgPageLayout>
 {:else}
     <Header />
 
