@@ -18,6 +18,58 @@
         hoveredNeighbors: new Set<string>(),
     };
 
+    const zoomIn = () => {
+        if (renderer) {
+            const camera = renderer.getCamera();
+            const currentRatio = camera.getState().ratio;
+            camera.animate({ ratio: currentRatio / 1.5 }, { duration: 300 });
+        }
+    };
+
+    const zoomOut = () => {
+        if (renderer) {
+            const camera = renderer.getCamera();
+            const currentRatio = camera.getState().ratio;
+            camera.animate({ ratio: currentRatio * 1.5 }, { duration: 300 });
+        }
+    };
+
+    const runForceLayout = () => {
+        if (renderer) {
+            const graph = renderer.getGraph();
+            // Apply ForceAtlas2 layout
+            ForceAtlas2.assign(graph, { iterations: 100 });
+            // Optionally, refresh the renderer to see the new positions immediately
+            renderer.refresh();
+        }
+    };
+
+    function setHoveredNode(node) {
+        if (node) {
+            state.hoveredNode = node;
+            state.hoveredNeighbors = new Set(
+                renderer.getGraph().neighbors(node),
+            );
+        } else {
+            state.hoveredNode = undefined;
+            state.hoveredNeighbors = new Set();
+        }
+        renderer.refresh({ skipIndexation: true });
+    }
+
+    function setDraggedNode(node: string | null) {
+        draggedNode = node;
+        if (node) {
+            state.nodeHighlighted = true;
+            state.hoveredNeighbors = new Set(
+                renderer.getGraph().neighbors(node),
+            );
+        } else {
+            state.nodeHighlighted = false;
+            state.hoveredNeighbors = new Set();
+        }
+    }
+
     onMount(async () => {
         const res = await fetch("/test.gexf");
         const gexf = await res.text();
@@ -123,58 +175,6 @@
             return res;
         });
     });
-
-    const zoomIn = () => {
-        if (renderer) {
-            const camera = renderer.getCamera();
-            const currentRatio = camera.getState().ratio;
-            camera.animate({ ratio: currentRatio / 1.5 }, { duration: 300 });
-        }
-    };
-
-    const zoomOut = () => {
-        if (renderer) {
-            const camera = renderer.getCamera();
-            const currentRatio = camera.getState().ratio;
-            camera.animate({ ratio: currentRatio * 1.5 }, { duration: 300 });
-        }
-    };
-
-    const runForceLayout = () => {
-        if (renderer) {
-            const graph = renderer.getGraph();
-            // Apply ForceAtlas2 layout
-            ForceAtlas2.assign(graph, { iterations: 100 });
-            // Optionally, refresh the renderer to see the new positions immediately
-            renderer.refresh();
-        }
-    };
-
-    function setHoveredNode(node) {
-        if (node) {
-            state.hoveredNode = node;
-            state.hoveredNeighbors = new Set(
-                renderer.getGraph().neighbors(node),
-            );
-        } else {
-            state.hoveredNode = undefined;
-            state.hoveredNeighbors = new Set();
-        }
-        renderer.refresh({ skipIndexation: true });
-    }
-
-    function setDraggedNode(node: string | null) {
-        draggedNode = node;
-        if (node) {
-            state.nodeHighlighted = true;
-            state.hoveredNeighbors = new Set(
-                renderer.getGraph().neighbors(node),
-            );
-        } else {
-            state.nodeHighlighted = false;
-            state.hoveredNeighbors = new Set();
-        }
-    }
 </script>
 
 <!-- Graph container -->
@@ -188,7 +188,8 @@
     <Button variant="outline" size="icon" on:click={zoomOut}>
         <Minus class="h-4 w-4" />
     </Button>
-    <Button on:click={runForceLayout}>Force Layout</Button> <!-- Added Force Layout Button -->
+    <Button on:click={runForceLayout}>Force Layout</Button>
+    <!-- Added Force Layout Button -->
 </div>
 
 <!-- Styles -->
