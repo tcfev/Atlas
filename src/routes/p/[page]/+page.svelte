@@ -6,12 +6,12 @@
     import Footer from "@/components/layout/Footer.svelte";
     export let data;
 
-    const { title, date, updated, isSvx } = data.meta;
+    const { title, date, updated, headerBg , isSvx } = data.meta;
     const { PostContent } = data;
 </script>
 
 {#if !isSvx}
-    <BlogHeader {title} {date} {updated}>
+    <BlogHeader {title} {date} {updated} {headerBg}>
         <Contact class="w-full h-full" slot="page-logo" />
     </BlogHeader>
 

@@ -8,9 +8,12 @@
     import { onMount } from "svelte";
     import { authStore } from "$lib/stores/authStore";
 
+    export let short = false;
+    
     let openLoginModal = false;
     let openLogoutModal = false;
     let user = null;
+    
 
     function onOpenChange(modal) {
         if (modal === "login") {
@@ -20,32 +23,36 @@
         }
     }
 
-    onMount(async () => {
-    });
+    onMount(async () => {});
+    $: console.log(short);
 </script>
 
 {#if $authStore.user}
     <LogoutModal bind:open={openLogoutModal} {onOpenChange} />
 
     <Button
-        class="mt-4 text-gray-400"
+        class="text-gray-400"
         on:click={() => (openLogoutModal = true)}
         variant="secondary"
         size="sm"
     >
-        <LogOutIcon class="w-4 h-4 ml-2" />
-        خروج از سیستم
+        <LogOutIcon class="w-4 h-4 {short ? '' : 'ml-2'}" />
+        {#if !short}
+            خروج از سیستم
+        {/if}
     </Button>
 {:else}
     <LoginModal bind:open={openLoginModal} {onOpenChange} />
 
     <Button
-        class="mt-4 text-gray-400"
+        class="text-gray-400 mt-2"
         on:click={() => (openLoginModal = true)}
         variant="secondary"
         size="sm"
     >
-        <LogInIcon class="w-4 h-4 ml-2" />
-        ورود به سیستم
+        <LogInIcon class="w-4 h-4  {short ? '' : 'ml-2'}" />
+        {#if !short}
+            ورود به سیستم
+        {/if}
     </Button>
 {/if}
