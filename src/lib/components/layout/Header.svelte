@@ -8,10 +8,11 @@
     import Menu from "lucide-svelte/icons/menu";
     import { defaultHeaderLinks, siteTitle } from "../../../content/configs";
     import Logo from "$lib/icons/Logo.svelte";
+    import AuthButton from "$lib/components/AuthButton.svelte";
 
     export let haederLinks = defaultHeaderLinks;
     export let style = 2;
-    
+
     let isSticky = false;
     let scrollY;
 
@@ -54,6 +55,9 @@
                     </a>
                 {/each}
             </div>
+            <div>
+                <AuthButton />
+            </div>
         </div>
     </header>
     <div
@@ -75,6 +79,9 @@
                     {name}
                 </a>
             {/each}
+        </div>
+        <div class="">
+            <AuthButton />
         </div>
     </div>
 {:else if style == 2}
@@ -98,19 +105,25 @@
                     </Button>
                 </Sheet.Trigger>
                 <Sheet.Content side="left">
-                    <Sheet.Header>
-                        <div
-                            class="inline-flex flex-col text-right justify-start gap-4 mt-8"
-                        >
-                            {#each haederLinks as { name, link }, idx (idx)}
-                                <SheetClose>
-                                    <a href={link} class="text-md">
-                                        {name}
-                                    </a>
-                                </SheetClose>    
-                            {/each}
+                        <div class="flex flex-col justify-between h-full">
+                            <div
+                                class="inline-flex flex-col text-right justify-start gap-4 mt-8"
+                            >
+                                {#each haederLinks as { name, link }, idx (idx)}
+                                    <SheetClose>
+                                        <a href={link} class="text-md">
+                                            {name}
+                                        </a>
+                                    </SheetClose>
+                                {/each}
+                            </div>
+
+                            <div
+                                class=" flex-col text-center justify-center gap-4 mt-8"
+                            >
+                                <AuthButton />
+                            </div>
                         </div>
-                    </Sheet.Header>
                 </Sheet.Content>
             </Sheet.Root>
             <div class="hidden lg:inline-flex flex-row justify-start gap-5">
@@ -124,6 +137,9 @@
                         {name}
                     </a>
                 {/each}
+                <div class="" style="padding-bottom: 50px;">
+                    <AuthButton short={true} />
+                </div>
             </div>
         </div>
     </div>

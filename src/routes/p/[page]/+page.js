@@ -20,6 +20,7 @@ export const load = async ({ params }) => {
 	if(!post) {
 		return error(404, new Error('Post not found'));
 	}
+	console.log(post.metadata)
 	
 
 	return {
