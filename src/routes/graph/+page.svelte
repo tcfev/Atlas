@@ -2,21 +2,27 @@
     import Sigma from "sigma";
     import Graph from "graphology";
     import { onMount } from "svelte";
-    import ChevronRight from "lucide-svelte/icons/chevron-right";
     import { Button } from "$lib/components/ui/button/index";
     import Minus from "lucide-svelte/icons/minus";
     import Plus from "lucide-svelte/icons/plus";
-    import ForceAtlas2 from "graphology-layout-forceatlas2"; // Importing ForceAtlas2 algorithm
+    import ForceAtlas2 from "graphology-layout-forceatlas2";
+    import { Play } from "lucide-svelte";
+    import ShowNodeBar from "@/components/ShowNodeBar.svelte";
 
     let container: HTMLElement;
     let renderer: Sigma;
     let draggedNode: string | null = null;
+
+    let selectTimeout: any = null;
+    let isSideOpen = true;
 
     const state = {
         nodeHighlighted: false,
         hoveredNode: undefined,
         hoveredNeighbors: new Set<string>(),
     };
+
+    let _subgraph;
 
     const zoomIn = () => {
         if (renderer) {
@@ -37,8 +43,13 @@
     const runForceLayout = () => {
         if (renderer) {
             const graph = renderer.getGraph();
+            const sensibleSettings = ForceAtlas2.inferSettings(graph);
+
             // Apply ForceAtlas2 layout
-            ForceAtlas2.assign(graph, { iterations: 100 });
+            ForceAtlas2.assign(graph, {
+                iterations: 20,
+                settings: sensibleSettings,
+            });
             // Optionally, refresh the renderer to see the new positions immediately
             renderer.refresh();
         }
@@ -70,9 +81,7 @@
         }
     }
 
-    onMount(async () => {
-        const res = await fetch("/test.gexf");
-        const gexf = await res.text();
+    async function drawGraph(gexf) {
         const { parse } = await import("graphology-gexf/browser");
         const graph = parse(Graph, gexf);
 
@@ -94,10 +103,27 @@
                     .getGraph()
                     .setNodeAttribute(neighbor, "highlighted-neighbor", true);
             });
+
+            selectTimeout = setTimeout(() => {
+                selectTimeout = null;
+                isSideOpen = true;
+
+                _subgraph = [];
+                const data = renderer.getGraph().getNodeAttributes(e.node);
+                _subgraph.push(data);
+
+                renderer.getGraph().forEachNeighbor(e.node, (neighbor) => {
+                    const data = renderer.getGraph().getNodeAttributes(neighbor);
+                    _subgraph.push(data);
+                });
+            }, 200);
         });
 
         renderer.getMouseCaptor().on("mousemove", (e) => {
             if (!draggedNode) return;
+            if (selectTimeout) {
+                clearTimeout(selectTimeout);
+            }
             const pos = renderer.viewportToGraph({ x: e.x, y: e.y });
             renderer.getGraph().setNodeAttribute(draggedNode, "x", pos.x);
             renderer.getGraph().setNodeAttribute(draggedNode, "y", pos.y);
@@ -138,7 +164,6 @@
         // Node reducer
         renderer.setSetting("nodeReducer", (node, data) => {
             const res = { ...data };
-
             if (
                 state.hoveredNode &&
                 !state.hoveredNeighbors.has(node) &&
@@ -151,10 +176,28 @@
                 res.color = "#ff0000";
             } else if (state.hoveredNeighbors.has(node)) {
                 res.color = "#ff0000"; // Highlight neighbor in red
-                res.size = 4;
             } else {
                 res.opacity = 0.1;
             }
+
+            if (data["@labels"] === "Country") {
+                res.size = 15;
+                // indigo
+                res.color = "#7274f1";
+            } else if (data["@labels"] === "Organization") {
+                res.size = 5;
+                // green
+                res.color = "#34d399";
+            } else if (data["@labels"] === "Political Party") {
+                res.size = 5;
+                // orange
+                res.color = "#f97316";
+            } else {
+                res.size = 5;
+            }
+
+            // hover coursor
+            res.styles = "cursor: pointer";
 
             return res;
         });
@@ -174,33 +217,71 @@
 
             return res;
         });
+
+        runForceLayout();
+    }
+
+    function closePanel() {
+        isSideOpen = false;
+    }
+
+    onMount(async () => {
+        const res = await fetch("/test.gexf");
+        const gexf = await res.text();
+        await drawGraph(gexf);
     });
 </script>
 
 <!-- Graph container -->
-<div dir="ltr" bind:this={container} class="graph-container"></div>
+<div class="graph-view">
+    <div
+        class="sidebar flex flex-col"
+        style="width:{isSideOpen ? '400px' : '0px'}"
+    >
+        <ShowNodeBar {closePanel} subgraph={_subgraph} />
+    </div>
 
-<!-- Control Buttons -->
-<div class="zoom-controls">
-    <Button variant="outline" size="icon" on:click={zoomIn}>
-        <Plus class="h-4 w-4" />
-    </Button>
-    <Button variant="outline" size="icon" on:click={zoomOut}>
-        <Minus class="h-4 w-4" />
-    </Button>
-    <Button on:click={runForceLayout}>Force Layout</Button>
-    <!-- Added Force Layout Button -->
+    <div
+        dir="ltr"
+        bind:this={container}
+        class="graph-container"
+        style="width:{isSideOpen ? 'calc(100vw - 400px)' : '100vw'}"
+    >
+        <!-- Control Buttons -->
+        <div class="zoom-controls">
+            <Button variant="outline" size="icon" on:click={zoomIn}>
+                <Plus class="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" on:click={zoomOut}>
+                <Minus class="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" on:click={runForceLayout}>
+                <!-- play -->
+                <Play class="h-4 w-4" />
+            </Button>
+            <!-- Added Force Layout Button -->
+        </div>
+    </div>
 </div>
 
 <!-- Styles -->
 <style>
     .graph-container {
-        width: 100vw;
-        height: calc(100vh - 50px);
+        height: 100%;
         position: relative;
         background-color: #fff;
         background-image: radial-gradient(#cccbcb 1px, transparent 1px);
         background-size: 20px 20px;
+    }
+    .sidebar {
+        height: 100%;
+        background-color: #f9fafb;
+    }
+    .graph-view {
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        height: calc(100vh - 50px);
     }
 
     .zoom-controls {
@@ -210,6 +291,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        z-index: 20;
     }
 
     /* Add custom node styles */
