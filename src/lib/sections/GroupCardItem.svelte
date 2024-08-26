@@ -13,6 +13,7 @@
     import { createEventDispatcher } from "svelte";
     import XIcon from "@/icons/XIcon.svelte";
     import InstagramIcon from "@/icons/InstagramIcon.svelte";
+    import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
 
     const dispatch = createEventDispatcher();
 
@@ -28,6 +29,7 @@
     export let social_x;
     export let social_instagram;
     export let editable = true;
+    export let pageLink;
 
     function truncateString(str, length) {
         if (!str) return "";
@@ -39,9 +41,9 @@
     }
 </script>
 
-<Card.Root class="w-full mb-4 shadow-sm hover:shadow-md transition-shadow">
+<Card.Root class="w-full mb-4 shadow-sm hover:shadow-md transition-shadow" >
     <Card.Header>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-row gap-4" >
             <div class="w-[78px] flex flex-row justify-center">
                 {#if logo}
                     <div class="image-wrapper">
@@ -111,6 +113,17 @@
     </Card.Content>
     <Card.Footer>
         <div class="content-container links-container">
+
+            {#if pageLink}
+                <Button
+                    variant="outline"
+                    href={pageLink}
+                    class="text-indigo-700"
+                >
+                    <ArrowUpRight class="h-4 w-4" />
+                </Button>
+            {/if}
+
             {#if editable}
                 <Button
                     variant="outline"
@@ -181,6 +194,8 @@
                     چارت سازمانی
                 </Button>
             {/if}
+
+
         </div>
     </Card.Footer>
 </Card.Root>
