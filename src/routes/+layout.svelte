@@ -8,6 +8,7 @@
     import { onMount } from "svelte";
     import { supabase } from "$lib/supabaseClient";
     import { authStore } from "$lib/stores/authStore";
+    import { siteTitle, siteName, siteDescription } from "../content/configs";
 
     import "../app.css";
     export let data = {};
@@ -26,7 +27,7 @@
                     user: {
                         email,
                         email_confirmed_at,
-                        last_sign_in_at
+                        last_sign_in_at,
                     },
                 };
             });
@@ -43,11 +44,11 @@
                         user: {
                             email,
                             email_confirmed_at,
-                            last_sign_in_at
+                            last_sign_in_at,
                         },
                     };
                 });
-            }else{
+            } else {
                 authStore.update((state) => {
                     return {
                         ...state,
@@ -60,6 +61,15 @@
     });
 </script>
 
+<svlete:head>
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:description" content={siteDescription} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@Atlasworker" />
+    <meta name="twitter:creator" content="@Atlasworker" />
+    <meta property="og:image" content="/twitter_banner.png" />
+</svlete:head>
 
 <div class="flex h-screen flex-col justify-between pt-[49px]">
     <Header />

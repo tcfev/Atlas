@@ -1,4 +1,5 @@
 export const siteTitle = "اطلس جامعه مدنی ایران";
+export const siteName = "اطلس جامعه مدنی ایران";
 export const siteDescription = "";
 export const postsPerPage = 10;
 
