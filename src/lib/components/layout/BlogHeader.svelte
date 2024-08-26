@@ -3,9 +3,13 @@
     export let title;
     export let date;
     export let updated;
+    export let headerBg = "background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%)";
 </script>
 
-<div class="w-full bg-white h-64 p-8 shadow-sm header"></div>
+<div class="w-full bg-white h-64 p-8 shadow-sm"
+        style="{headerBg}">
+
+</div>
 
 <div class="w-full mx-auto max-w-[800px] relative">
     <div
@@ -29,7 +33,4 @@
 </div>
 
 <style>
-    .header {
-        background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
-    }
 </style>
