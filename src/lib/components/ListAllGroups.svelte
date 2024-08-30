@@ -36,6 +36,27 @@
         dispatch("edit", e.detail);
     }
 
+    function deleteItem(idx) {
+        _data = _data.filter((_, i) => i !== idx);
+        dispatch("delete", idx);
+    }
+
+    function likeItem(idx) {
+        _data = _data.map((item, i) => {
+            if (i === idx) {
+                item.liked = !item.liked;
+            }
+            return item;
+        });
+        dispatch("like", idx);
+    }
+
+    function addNewItem() {
+        const newItem = { name: "New Group", about: "Description", liked: false };
+        _data = [newItem, ..._data];
+        dispatch("add", newItem);
+    }
+
     function dataSourceChanged(d) {
         _data = d;
     }
@@ -148,7 +169,13 @@
 {:else}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each _data as item, idx (idx)}
-            <GroupCardItem {...item} on:edit={edit} {editable} />
+            <GroupCardItem 
+                {...item} 
+                on:edit={edit} 
+                on:delete={() => deleteItem(idx)} 
+                on:like={() => likeItem(idx)} 
+                {editable} 
+            />
         {/each}
     </div>
 {/if}

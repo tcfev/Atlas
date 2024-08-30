@@ -9,7 +9,7 @@
     import MapPin from "lucide-svelte/icons/map-pin";
     import Users from "lucide-svelte/icons/users";
     import * as Tooltip from "$lib/components/ui/tooltip/index.js";
-    import ListAllGroups from "@/sections/ListAllGroups.svelte";
+    import ListAllGroups from "@/components/ListAllGroups.svelte";
     import Header from "@/components/layout/Header.svelte";
     import Hash from "lucide-svelte/icons/hash";
 

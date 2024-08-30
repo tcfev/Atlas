@@ -7,9 +7,7 @@
     import ForceAtlas2 from "graphology-layout-forceatlas2";
 
     export let subgraph;
-    export let closePanel = () => {
-        console.log("close panel");
-    };
+    export let closePanel = () => {};
     let container;
     let _initialized = false;
     let renderer;
@@ -22,7 +20,6 @@
 
         // turn node array data to subgraph
         const graph = new Graph();
-        console.log(_subgraph)
         _subgraph.map((node) => {
             graph.addNode(node["@id"], {
                 label: node["label"],

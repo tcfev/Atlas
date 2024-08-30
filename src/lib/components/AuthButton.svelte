@@ -24,7 +24,6 @@
     }
 
     onMount(async () => {});
-    $: console.log(short);
 </script>
 
 {#if $authStore.user}

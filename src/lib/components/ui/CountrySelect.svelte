@@ -45,9 +45,11 @@
   </Popover.Trigger>
   <Popover.Content class="w-[200px] p-0">
     <Command.Root>
-      <Command.Input placeholder="Search framework..." />
-      <Command.Empty>No framework found.</Command.Empty>
-      <Command.Group>
+      <Command.Input placeholder="جستجو..." />
+      <Command.Empty>
+        پیدا نشد
+      </Command.Empty>
+      <Command.Group class="h-[200px] overflow-auto">
         {#each frameworks as framework}
           <Command.Item
             value={framework.value}

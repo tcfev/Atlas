@@ -42,7 +42,6 @@
     }
 
     onMount(async () => {
-       console.log("hi");
        
     });
 

@@ -9,13 +9,13 @@
     import MapPin from "lucide-svelte/icons/map-pin";
     import Users from "lucide-svelte/icons/users";
     import * as Tooltip from "$lib/components/ui/tooltip/index.js";
-    import ListAllGroups from "@/sections/ListAllGroups.svelte";
+    import ListAllGroups from "@/components/ListAllGroups.svelte";
     import Header from "@/components/layout/Header.svelte";
     import Hash from "lucide-svelte/icons/hash";
     import EditModal from "@/components/EditModal.svelte";
     import CreateNewModal from "@/components/CreateNewModal.svelte"; // Import CreateNewModal
     import { authStore } from "$lib/stores/authStore";
-    import { getEntities, fixNamesInDB } from "$lib/api";
+    import { getEntities, fixNamesInDB, deleteEntity } from "$lib/api";
 
     let data = [];
     let editOpen = false;
@@ -39,6 +39,38 @@
         setTimeout(() => {
             editOpen = true;
         }, 100);
+    }
+
+    async function deleteItem(item) {
+        const elementToDelete = data.find((el) => el.id === item.id);
+        if (!elementToDelete) {
+            return;
+        }
+        elementToDelete.loading = true;
+        console.log("delete", elementToDelete.id);
+        await deleteEntity(elementToDelete.id)
+            .then(() => {
+                data = data.filter((el) => el.id !== elementToDelete.id);
+            })
+            .catch((e) => {
+                console.error(e);
+            })
+            .finally(() => {
+                elementToDelete.loading = false;
+            });
+    }
+
+    function likeItem(id) {
+        data = data.map((item) => {
+            if (item.id === id) {
+                item.liked = !item.liked;
+            }
+            return item;
+        });
+    }
+
+    function addNewItem() {
+        createOpen = true;
     }
 
     function modalClose() {
@@ -157,10 +189,7 @@
 
     <div class="flex flex-row my-16 gap-4">
         {#if $authStore.isAuthenticated}
-            <button
-                class="w-[250px] h-[110px]"
-                on:click={() => (createOpen = true)}
-            >
+            <button class="w-[250px] h-[110px]" on:click={addNewItem}>
                 <Card.Root
                     class=" h-full flex flex-col items-center justify-center cursor-pointer"
                 >
@@ -192,6 +221,8 @@
         {menuActions}
         {data}
         on:edit={edit}
+        on:delete={deleteItem}
+        on:like={likeItem}
         editable={!!$authStore.user}
     />
 </div>

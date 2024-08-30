@@ -140,6 +140,7 @@
 
         createEntity(data)
             .then((response) => {
+                console.log(response)
                 createState = "SUCCESS";
                 dispatch("close");
             })

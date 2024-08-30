@@ -65,7 +65,20 @@ export async function fixNamesInDB() {
 
 
 export async function createEntity(data) {
-  const res = await supabase.from('Entities').insert(data);
+  const res = await supabase.from('Entities').insert({id: 300,...data}).select();
+  if (res.error) {
+    throw new Error(res.error.message);
+  }
+  return res.data;
+}
+
+export async function deleteEntity(entityId) {
+  const deleted_at_timestampz = new Date().toISOString();
+  const res = await supabase
+    .from('Entities')
+    .update({ deleted_at: deleted_at_timestampz })
+    .eq('id', entityId);
+    
   if (res.error) {
     throw new Error(res.error.message);
   }

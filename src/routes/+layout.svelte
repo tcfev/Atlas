@@ -9,6 +9,8 @@
     import { supabase } from "$lib/supabaseClient";
     import { authStore } from "$lib/stores/authStore";
     import { siteTitle, siteName, siteDescription } from "../content/configs";
+    import { Toaster } from "$lib/components/ui/sonner";
+    import { toast } from "svelte-sonner";
 
     import "../app.css";
     export let data = {};
@@ -70,8 +72,13 @@
     <meta name="twitter:creator" content="@Atlasworker" />
     <meta property="og:image" content="/twitter_banner.png" />
 </svlete:head>
+<Toaster />
 
 <div class="flex h-screen flex-col justify-between pt-[49px]">
+    <!-- <button on:click={() => toast(" با موفقیت انجام شد")}>
+        با موفقیت انجام شد
+    </button> -->
+
     <Header />
     <main class="mb-auto">
         {#key data?.pathname}
