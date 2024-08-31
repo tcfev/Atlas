@@ -86,10 +86,14 @@
 
         if (search) {
             _data = _data.filter((item) => {
+                const lowerCaseSearch = search.toLowerCase();
+    
                 return (
-                    item.name?.includes(search) ||
-                    item.about?.includes(search) ||
-                    item.manifesto?.includes(search)
+                    item?.name?.toLowerCase().includes(lowerCaseSearch) ||
+                    item?.name_fa?.toLowerCase().includes(lowerCaseSearch) ||
+                    item?.name_en?.toLowerCase().includes(lowerCaseSearch) ||
+                    item?.about?.toLowerCase().includes(lowerCaseSearch) ||
+                    item?.manifesto?.toLowerCase().includes(lowerCaseSearch)
                 );
             });
         }

@@ -16,6 +16,7 @@
     import InstagramIcon from "@/icons/InstagramIcon.svelte";
     import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
     import Loading from "@/components/ui/loading/Loading.svelte";
+    import { goto } from "$app/navigation";
     const dispatch = createEventDispatcher();
 
     export let id = "";
@@ -39,184 +40,200 @@
         return str.length > length ? `${str.substring(0, length)}...` : str;
     }
 
-    function handleEditClick() {
+    function handleEditClick(e) {
         dispatch("edit", { id });
+
     }
 
-    function handleDeleteClick() {
+    function handleDeleteClick(e) {
         dispatch("delete", { id });
     }
+
+    function handleCardClick(e) {
+        if (!pageLink){
+            return;
+        }
+        goto(pageLink);
+    }
+
+    function gotoPage(link) {
+        return (e) =>{
+            if(!link || typeof window === "undefined"){
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+            
+            window.open(link, "_blank");
+        }
+    }
 </script>
-
 <Loading {loading} class="mb-4">
-    <Card.Root class="w-full  shadow-sm hover:shadow-md transition-shadow">
-        <Card.Header>
-            <div class="flex flex-row gap-4">
-                <div class="w-[78px] flex flex-row justify-center">
-                    {#if logo}
-                        <div class="image-wrapper">
-                            <img src={logo} alt="{name} logo" class="image" />
-                        </div>
-                    {:else}
-                        <div class="image-wrapper">
-                            <Fullscreen class="h-8 w-8" />
-                        </div>
-                    {/if}
-                </div>
-                <div class="title-container">
-                    <Card.Title>
-                        <h3 class="text-lg font-semibold">
-                            {name || "بدون نام"}
-                        </h3>
-                    </Card.Title>
-                    <Card.Description>
-                        <div class="flex flex-row gap-2">
-                            <Tooltip.Root>
-                                <Tooltip.Trigger>
-                                    <div
-                                        class="inline-flex flex-row justify-center items-center gap-2"
-                                    >
-                                        <Users class="h-4 w-4" />
-                                        <span>
-                                            {estimationOfMembers || "?"}
-                                        </span>
-                                    </div>
-                                </Tooltip.Trigger>
-                                <Tooltip.Content>
-                                    <p>تعداد تخمینی اعضا</p>
-                                </Tooltip.Content>
-                            </Tooltip.Root>
+    <button on:click={handleCardClick} class="w-full {!pageLink? 'cursor-default':''}">
+        <Card.Root
+            class="w-full  shadow-sm hover:shadow-md {pageLink
+                ? ' transition-all cursor-pointer '
+                : ''}"
+        >
+            <Card.Header>
+                <div class="flex flex-row gap-4">
+                    <div class="w-[78px] flex flex-row justify-center">
+                        {#if logo}
+                            <div class="image-wrapper">
+                                <img
+                                    src={logo}
+                                    alt="{name} logo"
+                                    class="image"
+                                />
+                            </div>
+                        {:else}
+                            <div class="image-wrapper">
+                                <Fullscreen class="h-8 w-8" />
+                            </div>
+                        {/if}
+                    </div>
+                    <div class="title-container">
+                        <Card.Title>
+                            <h3 class="text-lg font-semibold">
+                                {name || "بدون نام"}
+                            </h3>
+                        </Card.Title>
+                        <Card.Description>
+                            <div class="flex flex-row gap-2">
+                                <Tooltip.Root>
+                                    <Tooltip.Trigger>
+                                        <div
+                                            class="inline-flex flex-row justify-center items-center gap-2"
+                                        >
+                                            <Users class="h-4 w-4" />
+                                            <span>
+                                                {estimationOfMembers || "?"}
+                                            </span>
+                                        </div>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>
+                                        <p>تعداد تخمینی اعضا</p>
+                                    </Tooltip.Content>
+                                </Tooltip.Root>
 
-                            <Tooltip.Root>
-                                <Tooltip.Trigger>
-                                    <div
-                                        class="inline-flex flex-row justify-center items-center gap-2"
-                                    >
-                                        <MapPin class="h-4 w-4" />
-                                        <span>
-                                            {truncateString(
-                                                location || "?",
-                                                20,
-                                            )}
-                                        </span>
-                                    </div>
-                                </Tooltip.Trigger>
-                                <Tooltip.Content>
-                                    <p>پایگاه فعالیت</p>
-                                </Tooltip.Content>
-                            </Tooltip.Root>
-                        </div>
-                    </Card.Description>
-                </div>
-            </div>
-        </Card.Header>
-        <Card.Content>
-            <div class="flex flex-row content-container">
-                <div
-                    class="flex flex-col items-start space-x-4 rounded p-2 w-full"
-                >
-                    <div class="flex-1 space-y-1 w-full">
-                        <p dir="auto" class="about">
-                            {truncateString(about, 100) ||
-                                "توضیحاتی در دسترس نیست"}
-                        </p>
+                                <Tooltip.Root>
+                                    <Tooltip.Trigger>
+                                        <div
+                                            class="inline-flex flex-row justify-center items-center gap-2"
+                                        >
+                                            <MapPin class="h-4 w-4" />
+                                            <span>
+                                                {truncateString(
+                                                    location || "?",
+                                                    20,
+                                                )}
+                                            </span>
+                                        </div>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>
+                                        <p>پایگاه فعالیت</p>
+                                    </Tooltip.Content>
+                                </Tooltip.Root>
+                            </div>
+                        </Card.Description>
                     </div>
                 </div>
-            </div>
-            <!-- Add more fields as necessary -->
-        </Card.Content>
-        <Card.Footer>
-            <div class="content-container links-container">
-                {#if pageLink}
-                    <Button
-                        variant="outline"
-                        href={pageLink}
-                        class="text-indigo-700"
+            </Card.Header>
+            <Card.Content>
+                <div class="flex flex-row content-container">
+                    <div
+                        class="flex flex-col items-start space-x-4 rounded p-2 w-full"
                     >
-                        <ArrowUpRight class="h-4 w-4" />
-                    </Button>
-                {/if}
-
-                {#if editable}
-                    <Button
-                        variant="outline"
-                        class="text-blue-700"
-                        on:click={handleEditClick}
-                    >
-                        <Pencil class="h-4 w-4" />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        class="text-red-700"
-                        on:click={handleDeleteClick}
-                    >
-                        <Trash class="h-4 w-4" />
-                    </Button>
-                {/if}
-
-                {#if internet_address}
-                    <Button
-                        variant="outline"
-                        href={internet_address}
-                        target="_blank"
-                    >
-                        <Link class="h-4 w-4" />
-                    </Button>
-                {/if}
-
-                {#if social_x}
-                    {#each social_x as _x}
+                        <div class="flex-1 space-y-1 w-full">
+                            <p dir="auto" class="about">
+                                {truncateString(about, 100) ||
+                                    "توضیحاتی در دسترس نیست"}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more fields as necessary -->
+            </Card.Content>
+            <Card.Footer>
+                <div class="content-container links-container">
+                    {#if editable}
                         <Button
                             variant="outline"
-                            href="https://x.com/{_x}"
-                            target="_blank"
+                            class="text-blue-700"
+                            on:click={handleEditClick}
                         >
-                            <div class="h-4 w-4">
-                                <XIcon />
-                            </div>
+                            <Pencil class="h-4 w-4" />
                         </Button>
-                    {/each}
-                {/if}
-
-                {#if social_instagram}
-                    {#each social_instagram as insta}
                         <Button
                             variant="outline"
-                            href="https://instagram.com/{insta}/"
-                            target="_blank"
+                            class="text-red-700"
+                            on:click={handleDeleteClick}
                         >
-                            <div class="h-4 w-4">
-                                <InstagramIcon />
-                            </div>
+                            <Trash class="h-4 w-4" />
                         </Button>
-                    {/each}
-                {/if}
+                    {/if}
 
-                {#if manifesto}
-                    <Button
-                        variant="outline"
-                        class="text-green-700"
-                        href={manifesto}
-                    >
-                        <Scale class="ml-2 h-4 w-4" />
-                        منشور
-                    </Button>
-                {/if}
+                    {#if internet_address}
+                        <Button
+                            variant="outline"
+                            on:click={gotoPage(internet_address)}
+                        >
+                            <Link class="h-4 w-4" />
+                        </Button>
+                    {/if}
 
-                {#if constitution}
-                    <Button
-                        variant="outline"
-                        href={constitution}
-                        target="_blank"
-                        class="text-blue-700"
-                    >
-                        <ScrollText class="ml-2 h-4 w-4" />
-                        چارت سازمانی
-                    </Button>
-                {/if}
-            </div>
-        </Card.Footer>
-    </Card.Root>
+                    {#if social_x}
+                        {#each social_x as _x}
+                            <Button
+                                variant="outline"
+                                on:click={gotoPage(`https://x.com/${_x}`)}
+                            >
+                                <div class="h-4 w-4">
+                                    <XIcon />
+                                </div>
+                            </Button>
+                        {/each}
+                    {/if}
+
+                    {#if social_instagram}
+                        {#each social_instagram as insta}
+                            <Button
+                                variant="outline"
+                                on:click={gotoPage(`https://instagram.com/${insta}/`)}
+                            >
+                                <div class="h-4 w-4">
+                                    <InstagramIcon />
+                                </div>
+                            </Button>
+                        {/each}
+                    {/if}
+
+                    {#if manifesto}
+                        <Button
+                            variant="outline"
+                            class="text-green-700"
+                            on:click={gotoPage(manifesto)}
+                        >
+                            <Scale class="ml-2 h-4 w-4" />
+                            منشور
+                        </Button>
+                    {/if}
+
+                    {#if constitution}
+                        <Button
+                            variant="outline"
+                            on:click={gotoPage(constitution)}
+                            class="text-blue-700"
+                        >
+                            <ScrollText class="ml-2 h-4 w-4" />
+                            چارت سازمانی
+                        </Button>
+                    {/if}
+                </div>
+            </Card.Footer>
+        </Card.Root>
+    </button>
 </Loading>
 
 <style>

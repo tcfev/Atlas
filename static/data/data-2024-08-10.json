@@ -1,7 +1,6 @@
 [
     {
         "id": 2,
-        "pageLink": null,
         "mark for edit": "",
         "org_type": "سازمان",
         "logo": "logos/2.png",
@@ -28,7 +27,8 @@
         "social_instagram": [],
         "social_twitter": [],
         "social_facebook": [],
-        "name": "ما دانشجوی ایرانی هستیم"
+        "name": "ما دانشجوی ایرانی هستیم",
+        "pageLink":"/op/2.md"
     },
     {
         "id": 3,
@@ -156,13 +156,13 @@
     },
     {
         "id": 7,
-        "pageLink": null,
+        "pageLink": "/op/tcf",
         "mark for edit": "",
         "org_type": "سازمان",
         "logo": "logos/7.png",
-        "name_fa": "",
+        "name_fa": "همبستگی جامعه تراملی",
         "name_en": "Transnational Community Federation",
-        "name_short": "ICOIA",
+        "name_short": "tcf",
         "locations": "Transnational, DEmany",
         "post_location": "",
         "internet_address": "https://transcf.org",
@@ -183,7 +183,7 @@
         "social_instagram": [],
         "social_twitter": [],
         "social_facebook": [],
-        "name": ""
+        "name": "Transnational Community Federation"
     },
     {
         "id": 8,
