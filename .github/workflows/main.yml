@@ -39,6 +39,6 @@ jobs:
         run: |
           git config --global user.email "actions@transcf.org"
           git config --global user.name "GitHub Actions"
-          git add static/data/db.json
+          git add *
           git commit -m "Update database"
           git push
