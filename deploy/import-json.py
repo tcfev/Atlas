@@ -3,7 +3,7 @@ import os
 import datetime
 
 # Step 1: Read the JSON file
-json_file_path = 'static/data/data-2024-08-10.json'
+json_file_path = 'static/data/data.json'
 with open(json_file_path, 'r', encoding='utf-8') as file:
     data = json.load(file)
 
