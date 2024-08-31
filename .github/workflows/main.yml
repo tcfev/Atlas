@@ -27,12 +27,15 @@ jobs:
         run: |
           cd deploy/
           python -m pip install --upgrade pip
+          python -m pip install virtualenv
+          python -m virtualenv venv
+          source venv/bin/activate
           pip install -r requirements.txt
       
       - name: Update Database
         run: |
           cd deploy/
-          python update_db.py
+          venv/bin/python update_db.py
       
       - name: Commit and push changes
         run: |
