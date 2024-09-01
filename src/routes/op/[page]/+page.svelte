@@ -1,5 +1,5 @@
 <script>
-    import BlogHeader from "@/components/layout/BlogHeader.svelte";
+    import OrgHeader from "@/components/layout/OrgHeader.svelte";
     import OrgPageLayout from "@/components/layout/OrgPageLayout.svelte";
     import Contact from "lucide-svelte/icons/contact";
     import Header from "@/components/layout/Header.svelte";
@@ -11,11 +11,11 @@
 </script>
 
 {#if !isSvx}
-    <BlogHeader {title} {date} {updated} {headerBg}>
+    <OrgHeader {...data.meta}>
         <Contact class="w-full h-full" slot="page-logo" />
-    </BlogHeader>
+    </OrgHeader>
 
-    <OrgPageLayout>
+    <OrgPageLayout {...data.meta}>
         <article
             class="w-full mx-auto max-w-[800px] prose lg:prose-xl relative"
         >

@@ -3,10 +3,13 @@
     import Footer from "@/components/layout/Footer.svelte";
     import { onMount } from "svelte";
 
+    export let name_fa;
+
     onMount(() => {});
 </script>
 
 <slot name="header" />
+
 
 <div class="container mx-auto" dir="auto">
     <slot />
