@@ -3,6 +3,7 @@ name: ci
 on:
   schedule:
     - cron: '0 0 * * *'  # Run every day at midnight UTC
+  workflow_dispatch:
 
 
 env:
@@ -17,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
