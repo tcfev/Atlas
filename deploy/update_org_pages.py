@@ -2,8 +2,9 @@ import json
 import os
 import datetime
 import re
-
-json_file_path = "static/data/data.json"
+this_file_path = os.path.abspath(__file__)
+this_dir_path = os.path.dirname(this_file_path)
+json_file_path = os.path.join(this_dir_path,'..' , 'static' , 'data', "data.json")
 output_dir = "src/content/org-pages/"
 
 
