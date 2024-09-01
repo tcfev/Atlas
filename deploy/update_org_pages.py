@@ -2,10 +2,11 @@ import json
 import os
 import datetime
 import re
+
 this_file_path = os.path.abspath(__file__)
 this_dir_path = os.path.dirname(this_file_path)
-json_file_path = os.path.join(this_dir_path,'..' , 'static' , 'data', "data.json")
-output_dir = "src/content/org-pages/"
+json_file_path = os.path.join(this_dir_path, "..", "static", "data", "data.json")
+output_dir = os.path.join(this_dir_path, "..", "src/content/org-pages/")
 
 
 def log(message):
@@ -124,7 +125,6 @@ def update_file_content(file_path, entry, title):
             1
         ]
 
-        
         def to_dict(inp):
             output_dict = {}
             for obj in inp:
@@ -135,9 +135,8 @@ def update_file_content(file_path, entry, title):
                 output_dict[key] = value
             return output_dict
 
-
-        file_header_s = to_dict(file_header.split('\n'))
-        correct_header_s = to_dict(correct_header.split('\n'))
+        file_header_s = to_dict(file_header.split("\n"))
+        correct_header_s = to_dict(correct_header.split("\n"))
 
         missmatch = False
         for key in correct_header_s.keys():
@@ -147,11 +146,13 @@ def update_file_content(file_path, entry, title):
             elif file_header_s[key] != correct_header_s[key]:
                 missmatch = True
                 file_header_s[key] = correct_header_s[key]
-        
-        
-        new_file_header = '\n'.join([f"{key}: {value}" for key, value in file_header_s.items()])
-        new_file_content = split_by[0] + "---\n" + new_file_header + "\n---\n" + split_by[2]
-        
+
+        new_file_header = "\n".join(
+            [f"{key}: {value}" for key, value in file_header_s.items()]
+        )
+        new_file_content = (
+            split_by[0] + "---\n" + new_file_header + "\n---\n" + split_by[2]
+        )
 
         if missmatch:
             log(f"Header mismatch in file: {file_path}")
@@ -194,7 +195,6 @@ def process_entry(entry, output_dir, mapped_file):
         create_new_file(file_path, entry, title)
 
 
-
 def main():
     with open(json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
@@ -205,10 +205,10 @@ def main():
 
     for entry in data:
         process_entry(entry, output_dir, mapped_file)
-    
 
     with open(json_file_path, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
+
 
 if __name__ == "__main__":
     # delete_all_pages()
