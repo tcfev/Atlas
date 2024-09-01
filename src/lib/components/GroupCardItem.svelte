@@ -21,7 +21,9 @@
 
     export let id = "";
     export let logo = "";
-    export let name = "";
+    export let name_fa = "";
+    export let name_en = "";
+    export let name_short = "";
     export let estimationOfMembers;
     export let location;
     export let about;
@@ -32,6 +34,9 @@
     export let social_instagram;
     export let editable = true;
     export let pageLink;
+
+
+    let name;
 
     export let loading = false;
 
@@ -68,6 +73,9 @@
             window.open(link, "_blank");
         }
     }
+
+
+    $: name= name_fa || name_en || name_short || id || "بدون نام";
 </script>
 <Loading {loading} class="mb-4">
     <button on:click={handleCardClick} class="w-full {!pageLink? 'cursor-default':''}">
@@ -96,7 +104,7 @@
                     <div class="title-container">
                         <Card.Title>
                             <h3 class="text-lg font-semibold">
-                                {name || "بدون نام"}
+                                {name}
                             </h3>
                         </Card.Title>
                         <Card.Description>
