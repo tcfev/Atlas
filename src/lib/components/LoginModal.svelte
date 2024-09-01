@@ -41,10 +41,7 @@
         dispatch("close");
     }
 
-    onMount(async () => {
-       
-    });
-
+    onMount(async () => {});
 
     $: open && (loginSuccess = false);
 </script>
@@ -60,46 +57,48 @@
                     </Dialog.Description>
                 {/if}
             </Dialog.Header>
+            <form>
+                <div class="grid gap-4 py-4">
+                    {#if loginSuccess}
+                        <div class="text-center text-green-500">
+                            ورود موفقیت آمیز بود!
+                        </div>
+                    {:else}
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label for="email" class="text-right">ایمیل</Label>
+                            <Input
+                                id="email"
+                                bind:value={email}
+                                type="email"
+                                class="col-span-3"
+                            />
+                        </div>
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label for="password" class="text-right"
+                                >رمز عبور</Label
+                            >
+                            <Input
+                                id="password"
+                                bind:value={password}
+                                type="password"
+                                class="col-span-3"
+                            />
+                        </div>
+                    {/if}
+                </div>
 
-            <div class="grid gap-4 py-4">
-                {#if loginSuccess}
-                    <div class="text-center text-green-500">
-                        ورود موفقیت آمیز بود!
-                    </div>
-                {:else}
-                    <div class="grid grid-cols-4 items-center gap-4">
-                        <Label for="email" class="text-right">ایمیل</Label>
-                        <Input
-                            id="email"
-                            bind:value={email}
-                            type="email"
-                            class="col-span-3"
-                        />
-                    </div>
-                    <div class="grid grid-cols-4 items-center gap-4">
-                        <Label for="password" class="text-right">رمز عبور</Label
+                <Dialog.Footer>
+                    {#if !loginSuccess}
+                        <Button
+                            type="submit"
+                            on:click={handleLogin}
+                            disabled={loading}
                         >
-                        <Input
-                            id="password"
-                            bind:value={password}
-                            type="password"
-                            class="col-span-3"
-                        />
-                    </div>
-                {/if}
-            </div>
-
-            <Dialog.Footer>
-                {#if !loginSuccess}
-                    <Button
-                        type="submit"
-                        on:click={handleLogin}
-                        disabled={loading}
-                    >
-                        <span>{loading ? "در حال بارگذاری" : "ورود"}</span>
-                    </Button>
-                {/if}
-            </Dialog.Footer>
+                            <span>{loading ? "در حال بارگذاری" : "ورود"}</span>
+                        </Button>
+                    {/if}
+                </Dialog.Footer>
+            </form>
         </Dialog.Content>
     </Dialog.Root>
 </div>

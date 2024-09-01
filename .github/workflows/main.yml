@@ -34,6 +34,7 @@ jobs:
         run: |
           cd deploy/
           python -m pipenv run python update_db.py
+          python -m pipenv run python update_org_pages.py
       
       - name: Commit and push changes
         run: |

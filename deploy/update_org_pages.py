@@ -2,24 +2,21 @@ import json
 import os
 import datetime
 import re
-json_file_path = 'static/data/data.json'
-output_dir = 'src/content/org-pages/'
+
+json_file_path = "static/data/data.json"
+output_dir = "src/content/org-pages/"
 
 
 def log(message):
-    print(f'{datetime.datetime.now()} - {message}')
+    print(f"{datetime.datetime.now()} - {message}")
+
 
 def _(t):
-    # remove \n and \r from the string, and strip the trailing spaces
-    return str(t).replace('\n', '').replace('\r', '').strip()
+    return str(t).replace("\n", "").replace("\r", "").strip().replace('"', "'")
 
-def getMarkdownContent(
-    entry: dict,
-    title: str
-):
 
-    return \
-        f"""---
+def getMarkdownContent(entry: dict, title: str):
+    return f"""---
 title: "{_(title)}"
 id: "{_(entry.get('id', ''))}"
 org_type: "{_(entry.get('org_type', ''))}"
@@ -55,20 +52,22 @@ headerBg: "background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);"
 ---
 """
 
+
 def addPageLink(entry: dict, title: str):
     entry["pageLink"] = f"/op/{title}"
     return entry
 
+
 def getTitle(entry: dict):
-    title = entry.get('name_fa')
+    title = entry.get("name_fa")
     if title == "":
-        title = entry.get('name_en')
+        title = entry.get("name_en")
     if title == "":
-        title = str(entry.get('name_short'))
+        title = str(entry.get("name_short"))
     if title == "":
-        title = str(entry.get('id'))
-    # repl ace empty spaces ine the name with -
-    title = title.replace(' ', '-')
+        title = str(entry.get("id"))
+    title = title.strip()
+    title = title.replace(" ", "-")
 
     return title
 
@@ -85,101 +84,123 @@ def mapIDtoFileName(output_dir):
     for filename in os.listdir(output_dir):
         file_path = os.path.join(output_dir, filename)
 
-        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
             content = file.read()
 
-        delimiter_positions = [m.start()
-                               for m in re.finditer(r'^---$', content, re.MULTILINE)]
+        delimiter_positions = [
+            m.start() for m in re.finditer(r"^---$", content, re.MULTILINE)
+        ]
 
-        # Step 2: Check if there are at least two delimiters
         if len(delimiter_positions) >= 2:
-            # Step 3: Extract the section between the first two delimiters
-            section_content = content[delimiter_positions[0]:delimiter_positions[1]]
-
-            # Step 4: Search for the ID within the extracted section
+            section_content = content[delimiter_positions[0] : delimiter_positions[1]]
             id_pattern = re.compile(r'id:\s*"(.*?)"')
             match = id_pattern.search(section_content)
-
-            # Step 5: Check if ID is found
             if match:
                 id_from_file = match.group(1)
                 mapped[id_from_file] = filename
             else:
-                print(file_path)
-                log("No ID found in delimited section of file, the file will be deleted: " + file_path)
+                log(
+                    "No ID found in delimited section of file, the file will be deleted: "
+                    + file_path
+                )
                 os.remove(file_path)
         else:
-            print(file_path)
-            log("No delimited section found in file, the file will be deleted: " + file_path)
+            log(
+                "No delimited section found in file, the file will be deleted: "
+                + file_path
+            )
             os.remove(file_path)
     return mapped
 
 
 def update_file_content(file_path, entry, title):
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
-        split_by = content.split('---')
+        split_by = content.split("---")
         if len(split_by) < 2:
             log(f"File {file_path} is not in the correct format")
+            os.remove(file_path)
+            create_new_file(file_path, entry, title)
             return
         file_header = split_by[1]
-        correct_header = getMarkdownContent(
-            entry, title=getTitle(entry)).split('---')[1]
-        if file_header != correct_header:
-            print(file_header)
-            print(correct_header)
+        correct_header = getMarkdownContent(entry, title=getTitle(entry)).split("---")[
+            1
+        ]
+
+        
+        def to_dict(inp):
+            output_dict = {}
+            for obj in inp:
+                if obj == "":
+                    continue
+                key = obj.split(":")[0].strip()
+                value = ":".join(obj.split(":")[1:]).strip()
+                output_dict[key] = value
+            return output_dict
+
+
+        file_header_s = to_dict(file_header.split('\n'))
+        correct_header_s = to_dict(correct_header.split('\n'))
+
+        missmatch = False
+        for key in correct_header_s.keys():
+            if key not in file_header_s.keys():
+                missmatch = True
+                file_header_s[key] = correct_header_s[key]
+            elif file_header_s[key] != correct_header_s[key]:
+                missmatch = True
+                file_header_s[key] = correct_header_s[key]
+        
+        
+        new_file_header = '\n'.join([f"{key}: {value}" for key, value in file_header_s.items()])
+        new_file_content = split_by[0] + "---\n" + new_file_header + "\n---\n" + split_by[2]
+        
+
+        if missmatch:
             log(f"Header mismatch in file: {file_path}")
-            # Update file content
-            with open(file_path, 'w', encoding='utf-8') as file:
-                file.write(getMarkdownContent(entry, title))
+            with open(file_path, "w", encoding="utf-8") as file:
+                file.write(new_file_content)
                 log(f"File updated: {file_path}")
+
     except Exception as e:
         log(f"Error updating file {file_path}: {e}")
 
 
 def create_new_file(file_path, entry, title):
     try:
-        with open(file_path, 'w', encoding='utf-8') as file:
+        with open(file_path, "w", encoding="utf-8") as file:
             file.write(getMarkdownContent(entry, title))
-            log(f'File created: {file_path}')
+            log(f"File created: {file_path}")
     except Exception as e:
         log(f"Error creating file {file_path}: {e}")
 
 
 def process_entry(entry, output_dir, mapped_file):
     title = getTitle(entry)
-    filename = title + '.md'
+    filename = title + ".md"
     file_path = os.path.join(output_dir, filename)
-    # Check if entry ID is in mapped_file
-    entry_id = str(entry.get('id'))
+
+    entry_id = str(entry.get("id"))
     if entry_id in mapped_file:
         filename = mapped_file[entry_id]
         file_path = os.path.join(output_dir, filename)
-        correct_title = f"{getTitle(entry)}.md"
+        correct_title = f"{title}.md"
         if filename != correct_title:
             log(f"{filename} != {correct_title}")
-            # Rename file to correct_title.md
             new_file_path = os.path.join(output_dir, correct_title)
             os.rename(file_path, new_file_path)
             file_path = new_file_path
-            # Update mapped_file
             mapped_file[entry_id] = correct_title
             log(f"File renamed: {file_path} -> {new_file_path}")
-        # Check and update file content if necessary
         update_file_content(file_path, entry, title)
     else:
         create_new_file(file_path, entry, title)
 
 
 def main():
-    with open(json_file_path, 'r', encoding='utf-8') as file:
+    with open(json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
-    
-    # replace ever \n and \r with empty string, remove trailing spaces
-    for entry in data:
-        for key, value in entry.items():
-            entry[key] = _(value)
 
     os.makedirs(output_dir, exist_ok=True)
 
@@ -187,6 +208,7 @@ def main():
 
     for entry in data:
         process_entry(entry, output_dir, mapped_file)
+
 
 if __name__ == "__main__":
     # delete_all_pages()
