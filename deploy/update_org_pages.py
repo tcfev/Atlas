@@ -53,11 +53,6 @@ headerBg: "background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);"
 """
 
 
-def addPageLink(entry: dict, title: str):
-    entry["pageLink"] = f"/op/{title}"
-    return entry
-
-
 def getTitle(entry: dict):
     title = entry.get("name_fa")
     if title == "":
@@ -180,7 +175,7 @@ def process_entry(entry, output_dir, mapped_file):
     title = getTitle(entry)
     filename = title + ".md"
     file_path = os.path.join(output_dir, filename)
-
+    entry["pageLink"] = f"/op/{title}"
     entry_id = str(entry.get("id"))
     if entry_id in mapped_file:
         filename = mapped_file[entry_id]
@@ -198,6 +193,7 @@ def process_entry(entry, output_dir, mapped_file):
         create_new_file(file_path, entry, title)
 
 
+
 def main():
     with open(json_file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
@@ -208,7 +204,10 @@ def main():
 
     for entry in data:
         process_entry(entry, output_dir, mapped_file)
+    
 
+    with open(json_file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     # delete_all_pages()
