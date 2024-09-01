@@ -33,6 +33,7 @@ jobs:
       - name: Update Database
         run: |
           cd deploy/
+          git pull
           python -m pipenv run python update_db.py
           python -m pipenv run python update_org_pages.py
       
