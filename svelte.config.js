@@ -12,11 +12,12 @@ import adapter from '@sveltejs/adapter-cloudflare';
 
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
+import { getAllOPPaths } from './src/lib/server_utils.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: [
-		'.svelte', 
+		'.svelte',
 		...mdsvexConfig.extensions
 	],
 
@@ -36,7 +37,9 @@ const config = {
 		adapter: adapter({
 			// See below for an explanation of these options
 			routes: {
-				include: ['/*'],
+				include: [
+					'/*'
+				],
 				exclude: ['<all>']
 			},
 			platformProxy: {
@@ -62,6 +65,7 @@ const config = {
 				'*',
 				'/api/pages/page/*',
 				'/api/posts/page/*',
+				...getAllOPPaths()
 			]
 		},
 		csp: { mode: 'auto' }
