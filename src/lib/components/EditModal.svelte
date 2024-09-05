@@ -33,12 +33,6 @@
                     disabled: true,
                 },
                 {
-                    id: "name",
-                    displayName: "نام سازمان",
-                    value: "",
-                    type: "text",
-                },
-                {
                     id: "name_fa",
                     displayName: "نام فارسی",
                     value: "",
@@ -46,7 +40,7 @@
                 },
                 {
                     id: "name_en",
-                    displayName: "نام اینگلیسی",
+                    displayName: "نام انگلیسی",
                     value: "",
                     type: "text",
                 },
