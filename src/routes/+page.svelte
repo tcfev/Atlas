@@ -1,4 +1,4 @@
-<script>
+<script>   
     import Button from "@/components/ui/button/button.svelte";
     import { onMount } from "svelte";
     import * as Card from "$lib/components/ui/card/index.js";
