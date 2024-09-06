@@ -1,9 +1,13 @@
 import { error } from '@sveltejs/kit'
-export const prerender = true;
+export const prerender = false;
 
 export const load = async ({ params }) => {
 	let post;
 	let isSvx = true;
+
+	if (!params || !params?.page) {
+		return error(404, new Error('Post not found'));
+	}
 
 
 	try {

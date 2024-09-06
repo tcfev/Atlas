@@ -10,7 +10,7 @@ export function getAllOPPaths() {
     try {
         const files = readdirSync(postsDirectory);
         const opPaths = files
-            .filter(file => file.endsWith('.md'))
+            .filter(file => file.endsWith('.md') && file.length > 3)
             .map(file => `/op/${file.replace('.md', '')}`);
         return opPaths;
     } catch (err) {

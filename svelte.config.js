@@ -40,7 +40,9 @@ const config = {
 				include: [
 					'/*'
 				],
-				exclude: ['<all>']
+				exclude: [
+					'<all>'
+				]
 			},
 			platformProxy: {
 				configPath: 'wrangler.toml',
