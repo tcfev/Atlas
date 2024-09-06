@@ -45,7 +45,7 @@
                     type: "text",
                 },
                 {
-                    id: "location",
+                    id: "locations",
                     displayName: "پایگاه فعالیت",
                     value: "",
                     type: "countrySelect",
