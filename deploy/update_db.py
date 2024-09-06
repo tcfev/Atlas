@@ -11,6 +11,14 @@ users_password: str = os.getenv("SUPABASE_USERS_PASSWORD", "")
 
 supabase: Client = create_client(url, key)
 
+# a function that gets the logo of an entity
+def get_logo(entity):
+    # if a .png file exists with this id in /logos folder, return it
+    # otherwise, return a placeholder
+    if os.path.exists(f"../static/logos/{entity.get('id', '')}.png"):
+        return f"logos/{entity.get('id', '')}.png"
+    else:
+        return "logos/placeholder.png"
 def reshape_data(entity):
     reshaped_entity = {
         "id": entity.get("id", ""),
