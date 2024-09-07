@@ -37,7 +37,5 @@ By systematically addressing these areas, the Atlas project seeks to foster a co
 ## Build
 1. `npm run build`
 
-
-
 ## Licence 
 AGPL 3
