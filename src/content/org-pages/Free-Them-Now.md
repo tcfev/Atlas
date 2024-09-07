@@ -1,10 +1,10 @@
 ---
-title: "اکنون-آنها-را-آزاد-کنید"
+title: "Free-Them-Now"
 id: "87"
 org_type: "ORG"
-pageLink: "/op/اکنون-آنها-را-آزاد-کنید"
+pageLink: "/op/Free-Them-Now"
 logo: "logos/87.png"
-name_fa: "اکنون آنها را آزاد کنید"
+name_fa: ""
 name_en: "Free Them Now"
 name_short: ""
 locations: ""
@@ -32,3 +32,4 @@ delete_reason: ""
 deleted_at: ""
 headerBg: "background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);"
 ---
+
