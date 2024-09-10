@@ -11,6 +11,7 @@ export const defaultHeaderLinks = [
     { name: "همکاری", link: "/p/collaborate" },
     { name: "درباره ما", link: "/p/about-us" },
     { name: "تماس با ما", link: "/p/contact-us" },
+    { name: "نقشه‌ی راه", link: "/p/roadmap" }
 ];
 
 export const socialLinks = [
