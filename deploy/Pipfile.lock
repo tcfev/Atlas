@@ -268,11 +268,11 @@
         },
         "gotrue": {
             "hashes": [
-                "sha256:051551d80e642bdd2ab42cac78207745d89a2a08f429a1512d82624e675d8255",
-                "sha256:9d2e9c74405d879f4828e0a7b94daf167a6e109c10ae6e5c59a0e21446f6e423"
+                "sha256:4edf4c251da3535f2b044e23deba221e848ca1210c17d0c7a9b19f79a1e3f3c0",
+                "sha256:768e58207488e5184ffbdc4351b7280d913daf97962f4e9f2cca05c80004b042"
             ],
             "markers": "python_version >= '3.9' and python_version < '4.0'",
-            "version": "==2.9.3"
+            "version": "==2.10.0"
         },
         "h11": {
             "hashes": [
