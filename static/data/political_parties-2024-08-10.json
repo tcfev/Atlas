@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "شورای مدیریت گذار",
         "Short description": "iran-tc",
         "location": null,
@@ -10,9 +11,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 2,
         "name": "حزب کومه له کردستان",
         "Short description": null,
         "location": null,
@@ -23,9 +26,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 3,
         "name": "جنبش فداییان ایران",
         "Short description": null,
         "location": null,
@@ -36,9 +41,11 @@
         "Plan": null,
         "ساختار سیاسی": "https://telegram.me/saiedshemirani",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 4,
         "name": "حزب ایران آباد",
         "Short description": null,
         "location": null,
@@ -49,9 +56,11 @@
         "Plan": "https://archive.is/T8SB4",
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 5,
         "name": "حزب دمکرات کردستان",
         "Short description": null,
         "location": null,
@@ -62,9 +71,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 6,
         "name": "حزب دمکرات کردستان ایران",
         "Short description": null,
         "location": null,
@@ -75,9 +86,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 7,
         "name": "جنبش ملی الاحواز",
         "Short description": null,
         "location": null,
@@ -88,9 +101,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 8,
         "name": "حزب تضامن دمكراتيك أهواز (عربستان)",
         "Short description": null,
         "location": null,
@@ -101,9 +116,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 9,
         "name": "شورای دموکراسی‌خواهان ایران",
         "Short description": null,
         "location": null,
@@ -114,9 +131,11 @@
         "Plan": null,
         "ساختار سیاسی": "https://www.facebook.com/iraniandemocrats/",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 10,
         "name": "پلاتفورم اتحاد دمکراتیک آذربایجان – بیرلیک",
         "Short description": null,
         "location": null,
@@ -127,9 +146,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 11,
         "name": "جنبش جمهوری‌خوان دموکراتیک و لائیک ایران",
         "Short description": null,
         "location": null,
@@ -140,9 +161,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": " https://archive.is/7KWgt",
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 12,
         "name": "شورای موقت سوسیالیستهای چپ ایران",
         "Short description": null,
         "location": null,
@@ -153,9 +176,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 13,
         "name": "حزب رستاخیز ایرانگرایان",
         "Short description": null,
         "location": null,
@@ -166,9 +191,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 14,
         "name": "شورای پادشاهی‌خواهان ایران",
         "Short description": null,
         "location": null,
@@ -179,9 +206,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 15,
         "name": "کمپین نه به اعدام",
         "Short description": null,
         "location": null,
@@ -192,9 +221,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 16,
         "name": "کمپین اتحاد برای زم",
         "Short description": null,
         "location": null,
@@ -205,9 +236,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 17,
         "name": "ایران نوین",
         "Short description": null,
         "location": null,
@@ -218,9 +251,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 18,
         "name": "حزب مشروطه ایران (لیبرال دموکرات)",
         "Short description": null,
         "location": null,
@@ -231,9 +266,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 19,
         "name": "اتحاد جمهوری‌خواهان ایران",
         "Short description": null,
         "location": null,
@@ -244,9 +281,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 20,
         "name": "همبستگی جمهوری‌خواهان ایران",
         "Short description": null,
         "location": null,
@@ -257,9 +296,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 21,
         "name": "نهاد مردمی ",
         "Short description": "THE NEW IRAN",
         "location": null,
@@ -270,9 +311,11 @@
         "Plan": "https://www.thenewiran.com/tni2020/staticpage/detail?StaticPageName=Aboutus",
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 22,
         "name": "کنگره‌ی رهایی ایران",
         "Short description": null,
         "location": null,
@@ -283,9 +326,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 23,
         "name": "مشروطه دات کام",
         "Short description": null,
         "location": null,
@@ -296,9 +341,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
+        "id": 24,
         "name": "آوای ملت ایران",
         "Short description": null,
         "location": null,
@@ -309,10 +356,12 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "جنبش فصل همبستگی",
+        "id": 25,
+        "name_fa": "جنبش فصل همبستگی",
         "Short description": null,
         "location": null,
         "internetAddress": "https://twitter.com/faslehambastegi?lang=en",
@@ -322,10 +371,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "شورای هماهنگی رسانه‌های مردمی و مبارز",
+        "name_fa": "شورای هماهنگی رسانه‌های مردمی و مبارز",
         "Short description": null,
         "location": null,
         "internetAddress": "https://t.me/Shorayhamahangi",
@@ -335,10 +385,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "همبستگی برای آزادی و برابری در ایران",
+        "name_fa": "همبستگی برای آزادی و برابری در ایران",
         "Short description": null,
         "location": null,
         "internetAddress": "https://hambastegi.de/",
@@ -348,10 +399,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "کنگره ملیتهای ایران فدرال",
+        "name_fa": "کنگره ملیتهای ایران فدرال",
         "Short description": null,
         "location": null,
         "internetAddress": "https://iran-federal.net/",
@@ -361,10 +413,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "کانون فرهنگی وسیاسی ترکمن صحرا",
+        "name_fa": "کانون فرهنگی وسیاسی ترکمن صحرا",
         "Short description": null,
         "location": null,
         "internetAddress": "https://www.ilguji.org/",
@@ -374,10 +427,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "همبستگی ملی",
+        "name_fa": "همبستگی ملی",
         "Short description": null,
         "location": null,
         "internetAddress": "https://www.hambastegimeli.com/",
@@ -387,10 +441,11 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "حزب مردم بلوچستان",
+        "name_fa": "حزب مردم بلوچستان",
         "Short description": null,
         "location": null,
         "internetAddress": "https://www.ostomaan.org/",
@@ -400,10 +455,11 @@
         "Plan": null,
         "ساختار سیاسی": "در جستجوگر دیده نمی‌شود",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
-        "name": "جبهه متحد بلوچستان",
+        "name_fa": "جبهه متحد بلوچستان",
         "Short description": null,
         "location": null,
         "internetAddress": "http://balochunitedfront.org/",
@@ -413,6 +469,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -426,6 +483,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://web.archive.org/web/20200922103917/https://iran-archive.com/start/310",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -439,6 +497,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -452,6 +511,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -465,6 +525,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://www.facebook.com/pg/ayandehnegar/photos/?tab=album&album_id=1208638469284898&ref=page_internal",
         "Political position": "secular democrats",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -478,6 +539,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://archive.is/7Zaoh",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -491,6 +553,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -504,6 +567,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -517,6 +581,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -530,6 +595,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://archive.is/Oi4YJ",
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -543,6 +609,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -556,6 +623,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://archive.is/0l2LY",
         "Political position": "social democrats",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -569,6 +637,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": "secular democrats",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -582,6 +651,7 @@
         "Plan": null,
         "ساختار سیاسی": "https://archive.is/4J7tO",
         "Political position": "social democrats",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -595,6 +665,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": "socialists",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -608,6 +679,7 @@
         "Plan": "https://archive.is/hPmNF",
         "ساختار سیاسی": null,
         "Political position": "liberal democrats",
+        "mark for edit": "",
         "null": null
     },
     {
@@ -621,6 +693,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -634,6 +707,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -647,6 +721,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -660,6 +735,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -673,6 +749,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -686,6 +763,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -699,6 +777,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -712,6 +791,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -725,6 +805,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -738,6 +819,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -751,6 +833,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -764,6 +847,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -777,6 +861,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -790,6 +875,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -803,6 +889,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -816,6 +903,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -829,6 +917,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -842,6 +931,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     },
     {
@@ -855,6 +945,7 @@
         "Plan": null,
         "ساختار سیاسی": null,
         "Political position": null,
+        "mark for edit": "",
         "null": null
     }
 ]
