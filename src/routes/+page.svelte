@@ -116,7 +116,7 @@
                 <br />
                 - آخرین اخبار پروژه را در این وبسایت دنبال کنید.<br />
                 - دانش خود را به اشتراک بگذارید.<br />
-                - با ما <a href="mailto:atlas@transcf.org" class="underline">تماس بگیرید</a>.<br />
+                - با ما <a href="mailto:hi@atlasiran.org" class="underline">تماس بگیرید</a>.<br />
             </p>
         </div>
     </section>

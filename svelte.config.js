@@ -1,14 +1,7 @@
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-
 // cloudflare 
 import adapter from '@sveltejs/adapter-cloudflare';
-
-// static
-// import adapter from '@sveltejs/adapter-static';
-
-// // auto
-// import adapter from '@sveltejs/adapter-auto';
 
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
@@ -25,7 +18,6 @@ const config = {
 		mdsvex(mdsvexConfig),
 		vitePreprocess(),
 	],
-
 
 	kit: {
 		// --------------------------------------------------- static
@@ -51,12 +43,6 @@ const config = {
 				persist: false
 			}
 		}),
-
-		// // --------------------------------------------------- auto
-		// adapter: adapter(),
-
-
-
 
 		alias: {
 			"@/*": "./src/lib/*",

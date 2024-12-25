@@ -8,7 +8,6 @@ export async function getEntity(entityId) {
   return res.data;
 }
 
-
 export async function updateEntity(entityId, data) {
   const res = await supabase.from('Entities').update(data).eq('id', +entityId);
   if (res.error) {
@@ -25,7 +24,6 @@ export async function uploadLogo(path, file) {
     // Handle success
   }
 }
-
 
 export async function getEntities() {
   const res = await supabase.from('Entities').select('*');
