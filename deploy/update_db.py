@@ -39,7 +39,7 @@ def reshape_data(entity):
         "activities": entity.get("activities", ""),
         "history": entity.get("history", ""),
         "manifest": entity.get("manifest", ""),
-        "coc": entity.get("coc", ""),
+        "codeOfConduct": entity.get("codeOfConduct", ""),
         "estimation_of_members": "" if entity.get("estimation_of_members") == -1 else entity.get("estimation_of_members"),
         "projects": entity.get("projects", ""),
         "others1": entity.get("others1", ""),

@@ -42,7 +42,7 @@
     export let expertise = "";
     export let activities = "";
     export let history = "";
-    export let coc = "";
+    export let codeOfConduct = "";
     export let projects = "";
     export let others1 = "";
     export let others2 = "";
