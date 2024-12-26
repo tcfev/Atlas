@@ -78,7 +78,7 @@
                     type: "number",
                 },
                 {
-                    id: "manifesto",
+                    id: "manifest",
                     displayName: "بیانیه",
                     value: "",
                     type: "text",

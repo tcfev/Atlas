@@ -95,7 +95,7 @@
           <attvalue for="Full name" value="Council of Ex-Muslims of Britain"/>
           <attvalue for="Contact" value="exmuslimcouncil@gmail.com"/>
           <attvalue for="Location(s)" value="UK"/>
-          <attvalue for="constitution/charter" value="https://ex-muslim.org.uk/manifesto/"/>
+          <attvalue for="constitution/charter" value="https://ex-muslim.org.uk/manifest/"/>
         </attvalues>
         <viz:color r="240" g="41" b="219"/>
         <viz:size value="1"/>
@@ -2641,7 +2641,7 @@
           <attvalue for="reference" value="https://twitter.com/UYI_en"/>
           <attvalue for="Full name" value="United Youth of Iran"/>
           <attvalue for="Contact" value="Telegram admin ID: @fa_UIY"/>
-          <attvalue for="assets &amp; specialties" value="The UYI is a non-politically oriented organization committed to achieving freedom for Iran by upholding the principles outlined in their manifesto"/>
+          <attvalue for="assets &amp; specialties" value="The UYI is a non-politically oriented organization committed to achieving freedom for Iran by upholding the principles outlined in their manifest"/>
         </attvalues>
         <viz:color r="240" g="41" b="219"/>
         <viz:size value="1"/>

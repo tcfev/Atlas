@@ -8,15 +8,15 @@
     export let pageLink;
     export let name_en;
     export let name_short;
-    export let locations;
+    export let location;
     export let post_location;
-    export let internet_address;
+    export let internetAddress;
     export let email;
     export let phone;
     export let about;
     export let expertise;
     export let history;
-    export let manifesto;
+    export let manifest;
     export let coc;
     export let estimation_of_members;
     export let political_orientation;
@@ -60,7 +60,7 @@
         </div>
         <div>
             <b>نشانی روی اطلس:</b>
-            <a href={`https://Atlas.transcf.org${pageLink}`} class="text-blue-500" dir="ltr">{`https://Atlas.transcf.org${pageLink}`}</a>
+            <a href={`https://atlasiran.org${pageLink}`} class="text-blue-500" dir="ltr">{`https://atlasiran.org${pageLink}`}</a>
         </div>
         <div>
             <b>نام لاتین:</b>
@@ -72,7 +72,7 @@
         </div>
         <div>
             <b>مکان:</b>
-            <span>{locations}</span>   
+            <span>{location}</span>   
         </div>
         <div>
             <b>نشانی پستی:</b>
@@ -80,7 +80,7 @@
         </div>
         <div>
             <b>نشانی وب‌سایت:</b>
-            <a href={internet_address} class="text-blue-500" dir="ltr">{internet_address}</a>
+            <a href={internetAddress} class="text-blue-500" dir="ltr">{internetAddress}</a>
         </div>
         <div>
             <b>ایمیل:</b>
@@ -99,7 +99,7 @@
             </div>
             <div>
                 <b>منیفست:</b>
-                <span>{manifesto}</span>   
+                <span>{manifest}</span>   
             </div>
             <div>
                 <b>مرام‌نامه:</b>

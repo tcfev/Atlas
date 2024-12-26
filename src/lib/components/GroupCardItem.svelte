@@ -24,18 +24,32 @@
     export let name_fa = "";
     export let name_en = "";
     export let name_short = "";
-    export let estimationOfMembers;
-    export let location;
+    export let estimationOfMembers = "";
+    export let location = "";
     export let about;
-    export let manifesto;
-    export let internet_address;
+    export let pageLink;
+    export let manifest;
+    export let internetAddress;
     export let constitution;
     export let social_x;
     export let social_instagram;
     export let editable = true;
-    export let pageLink;
-
-
+    export let markForEdit = false;
+    export let org_type = "";
+    export let post_location = "";
+    export let contact = "";
+    export let phone = "";
+    export let expertise = "";
+    export let activities = "";
+    export let history = "";
+    export let coc = "";
+    export let projects = "";
+    export let others1 = "";
+    export let others2 = "";
+    export let political_orientation = "";
+    export let social_facebook = null;
+    export let plan = "";
+    export let shortDescription = "";
     let name;
 
     export let loading = false;
@@ -182,10 +196,10 @@
                         </Button>
                     {/if}
 
-                    {#if internet_address}
+                    {#if internetAddress}
                         <Button
                             variant="outline"
-                            on:click={gotoPage(internet_address)}
+                            on:click={gotoPage(internetAddress)}
                         >
                             <Link class="h-4 w-4" />
                         </Button>
@@ -217,11 +231,11 @@
                         {/each}
                     {/if}
 
-                    {#if manifesto}
+                    {#if manifest}
                         <Button
                             variant="outline"
                             class="text-green-700"
-                            on:click={gotoPage(manifesto)}
+                            on:click={gotoPage(manifest)}
                         >
                             <Scale class="ml-2 h-4 w-4" />
                             منشور

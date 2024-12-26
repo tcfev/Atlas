@@ -45,7 +45,7 @@
                     type: "text",
                 },
                 {
-                    id: "locations",
+                    id: "location",
                     displayName: "پایگاه فعالیت",
                     value: "",
                     type: "countrySelect",
@@ -69,7 +69,7 @@
             value: "contact",
             fields: [
                 {
-                    id: "internet_address",
+                    id: "internetAddress",
                     displayName: "پایگاه اینترنتی",
                     value: "",
                     type: "url",
@@ -119,7 +119,7 @@
                     type: "text",
                 },
                 {
-                    id: "manifesto",
+                    id: "manifest",
                     displayName: "بیانیه",
                     value: "",
                     type: "text",
