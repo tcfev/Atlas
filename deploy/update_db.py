@@ -32,7 +32,7 @@ def reshape_data(entity):
         "location": entity.get("location", ""),
         "post_location": entity.get("post_location", ""),
         "internetAddress": entity.get("internetAddress", ""),
-        "email": entity.get("email", ""),
+        "contact": entity.get("contact", ""),
         "phone": entity.get("phone", ""),
         "about": entity.get("about", ""),
         "expertise": entity.get("expertise", ""),

@@ -21,7 +21,7 @@
     ];
 
     onMount(() => {
-        fetch("/data/political_parties-2024-08-10.json")
+        fetch("/data/political_parties.json")
             .then((response) => response.json())
             .then((json) => {
                 data = json;
