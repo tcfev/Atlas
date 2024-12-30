@@ -18,7 +18,7 @@ def get_logo(entity):
     if os.path.exists(f"../static/logos/{entity.get('id', '')}.png"):
         return f"logos/{entity.get('id', '')}.png"
     else:
-        return "logos/placeholder.png"
+        return "logos/temporary.png"
 def reshape_data(entity):
     reshaped_entity = {
         "id": entity.get("id", ""),
