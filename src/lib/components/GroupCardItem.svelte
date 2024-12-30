@@ -18,6 +18,7 @@
     import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
     import Loading from "@/components/ui/loading/Loading.svelte";
     import { goto } from "$app/navigation";
+    import { authStore } from "$lib/stores/authStore";
     const dispatch = createEventDispatcher();
 
     export let id = "";
@@ -181,7 +182,7 @@
             </Card.Content>
             <Card.Footer>
                 <div class="content-container links-container">
-                    {#if editable}
+                    {#if editable && $authStore.user}
                         <Button
                             variant="outline"
                             class="text-blue-700"
