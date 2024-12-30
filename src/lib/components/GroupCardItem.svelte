@@ -14,6 +14,7 @@
     import { createEventDispatcher } from "svelte";
     import XIcon from "@/icons/XIcon.svelte";
     import InstagramIcon from "@/icons/InstagramIcon.svelte";
+    import TelegramIcon from "@/icons/TelegramIcon.svelte";
     import ArrowUpRight from "lucide-svelte/icons/arrow-up-right";
     import Loading from "@/components/ui/loading/Loading.svelte";
     import { goto } from "$app/navigation";
@@ -33,6 +34,7 @@
     export let constitution;
     export let social_x;
     export let social_instagram;
+    export let social_telegram;
     export let editable = true;
     export let markForEdit = false;
     export let org_type = "";
@@ -226,7 +228,17 @@
                                 </div>
                             </Button>
                     {/if}
-
+                    
+                    {#if social_telegram}
+                        <Button
+                            variant="outline"
+                            on:click={gotoPage(`${social_telegram}`)}
+                        >
+                            <div class="h-4 w-4">
+                                <TelegramIcon />
+                            </div>
+                        </Button>
+                    {/if}
                     {#if manifest}
                         <Button
                             variant="outline"
