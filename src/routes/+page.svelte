@@ -89,7 +89,7 @@
                 hover:border-yellow-600 transition-colors text-gray-700 hover:text-yellow-600"
                 >
                 <Handshake class="h-20 w-20 " />
-                <span class="text-3xl"> احزاب</span>
+                <span class="text-3xl text-center">احزاب و سازمان‌های سیاسی</span>
                 </Card.Root>
             </a>
 
