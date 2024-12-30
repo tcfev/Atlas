@@ -21,7 +21,7 @@ estimation_of_members: ""
 political_orientation: ""
 markForEdit: ""
 social_telegram: ""
-social_facebook: "None"
+social_facebook: ""
 social_youtube: ""
 social_x: "None"
 social_instagram: "['stage_of_freedom']"
@@ -32,3 +32,4 @@ delete_reason: ""
 deleted_at: ""
 headerBg: "background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);"
 ---
+

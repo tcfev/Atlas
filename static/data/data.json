@@ -2709,7 +2709,7 @@
     {
         "id": 194,
         "logo": "logos/temporary.png",
-        "pageLink": "/op/yaran-north-west",
+        "pageLink": "/op/yarannorthwest",
         "markForEdit": "",
         "org_type": "ORG",
         "name_fa": "",
@@ -5879,7 +5879,7 @@
     {
         "id": 216,
         "logo": "logos/temporary.png",
-        "pageLink": "/op/نهاد-مردمی",
+        "pageLink": "/op/نهاد-مردمی-the-new-Iran",
         "markForEdit": "",
         "org_type": "P_ORG",
         "name_fa": "نهاد مردمی the new Iran ",
@@ -6475,5 +6475,4 @@
         "history": "",
         "codeOfConduct": ""
     }
-
 ]

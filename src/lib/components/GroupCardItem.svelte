@@ -206,29 +206,25 @@
                     {/if}
 
                     {#if social_x}
-                        {#each social_x as _x}
                             <Button
                                 variant="outline"
-                                on:click={gotoPage(`https://x.com/${_x}`)}
+                                on:click={gotoPage(`${social_x}`)}
                             >
                                 <div class="h-4 w-4">
                                     <XIcon />
                                 </div>
                             </Button>
-                        {/each}
                     {/if}
 
                     {#if social_instagram}
-                        {#each social_instagram as insta}
                             <Button
                                 variant="outline"
-                                on:click={gotoPage(`https://instagram.com/${insta}/`)}
+                                on:click={gotoPage(`${social_instagram}`)}
                             >
                                 <div class="h-4 w-4">
                                     <InstagramIcon />
                                 </div>
                             </Button>
-                        {/each}
                     {/if}
 
                     {#if manifest}
