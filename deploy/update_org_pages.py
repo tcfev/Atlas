@@ -5,7 +5,7 @@ import re
 
 this_file_path = os.path.abspath(__file__)
 this_dir_path = os.path.dirname(this_file_path)
-json_file_path = os.path.join(this_dir_path, "..", "static", "data", "data.json")
+json_file_path = os.path.join(this_dir_path, "..", "static", "data", "political_parties.json")
 output_dir = os.path.join(this_dir_path, "..", "src","content","org-pages")
 
 
