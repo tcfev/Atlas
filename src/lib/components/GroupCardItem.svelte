@@ -62,12 +62,12 @@
         return str.length > length ? `${str.substring(0, length)}...` : str;
     }
 
-    function handleEditClick(e) {
+    function handleEdit(e) {
         dispatch("edit", { id });
 
     }
 
-    function handleDeleteClick(e) {
+    function handleDelete(e) {
         dispatch("delete", { id });
     }
 
@@ -186,14 +186,14 @@
                         <Button
                             variant="outline"
                             class="text-blue-700"
-                            on:click={handleEditClick}
+                            on:click={handleEdit}
                         >
                             <Pencil class="h-4 w-4" />
                         </Button>
                         <Button
                             variant="outline"
                             class="text-red-700"
-                            on:click={handleDeleteClick}
+                            on:click={handleDelete}
                         >
                             <Trash class="h-4 w-4" />
                         </Button>
